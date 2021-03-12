@@ -7,12 +7,10 @@ import (
 	"github.com/linode/linodego"
 )
 
-var (
-	testVLA***REMOVED***reateOpts = linodego.VLA***REMOVED***reateOptions{
-		Description: "linodego-testing",
-		Region:      "ca-central",
-	}
-)
+var testVLA***REMOVED***reateOpts = linodego.VLA***REMOVED***reateOptions{
+	Description: "linodego-testing",
+	Region:      "ca-central",
+}
 
 type vlanModifier func(*linodego.VLA***REMOVED***reateOptions)
 
