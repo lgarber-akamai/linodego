@@ -10,7 +10,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances
     method: POST
   response:
@@ -72,7 +72,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/boot
     method: POST
   response:
@@ -127,7 +127,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -169,7 +169,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -211,7 +211,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -253,7 +253,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -295,7 +295,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -337,7 +337,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -379,7 +379,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -421,7 +421,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -463,7 +463,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -505,7 +505,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -547,7 +547,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -589,7 +589,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -631,7 +631,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -673,7 +673,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -715,7 +715,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -757,7 +757,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -799,7 +799,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -841,7 +841,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -883,7 +883,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -925,7 +925,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -967,7 +967,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -1009,7 +1009,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -1051,7 +1051,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -1093,7 +1093,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -1135,7 +1135,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -1177,7 +1177,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -1219,7 +1219,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -1261,7 +1261,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -1303,7 +1303,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -1345,7 +1345,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -1387,7 +1387,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -1429,7 +1429,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -1471,7 +1471,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -1513,7 +1513,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -1555,7 +1555,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -1597,7 +1597,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -1639,7 +1639,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -1681,7 +1681,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -1723,7 +1723,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -1765,7 +1765,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -1807,7 +1807,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -1849,7 +1849,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -1891,7 +1891,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -1933,7 +1933,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats
     method: GET
   response:
@@ -2779,7 +2779,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732/stats/2018/1
     method: GET
   response:
@@ -2838,7 +2838,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/linode/instances/36183732
     method: DELETE
   response:

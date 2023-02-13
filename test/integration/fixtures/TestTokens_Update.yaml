@@ -10,7 +10,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/profile/tokens
     method: POST
   response:
@@ -67,7 +67,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/profile/tokens/41180272
     method: PUT
   response:
@@ -124,7 +124,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/profile/tokens/41180272
     method: DELETE
   response:

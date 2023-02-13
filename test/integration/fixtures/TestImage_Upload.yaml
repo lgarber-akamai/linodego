@@ -10,7 +10,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/regions
     method: GET
   response:
@@ -115,7 +115,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/images/upload
     method: POST
   response:
@@ -175,7 +175,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/images/private/17578677
     method: GET
   response:
@@ -236,7 +236,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/images/private/17578677
     method: GET
   response:
@@ -297,7 +297,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/images/private/17578677
     method: DELETE
   response:

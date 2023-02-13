@@ -7,7 +7,7 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 
-	. "github.com/linode/linodego"
+	. "github.com/lgarber-akamai/linodego"
 )
 
 var testBasicObjectStorageKeyCreateOpts = ObjectStorageKeyCreateOptions{

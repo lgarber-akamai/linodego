@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"testing"
 
-	. "github.com/linode/linodego"
+	. "github.com/lgarber-akamai/linodego"
 )
 
 func TestIPAddress_GetMissing(t *testing.T) {

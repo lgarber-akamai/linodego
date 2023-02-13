@@ -10,7 +10,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/regions
     method: GET
   response:
@@ -114,7 +114,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/lke/clusters
     method: POST
   response:
@@ -172,7 +172,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/lke/clusters/76165/recycle
     method: POST
   response:
@@ -227,7 +227,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/lke/clusters/76165
     method: DELETE
   response:

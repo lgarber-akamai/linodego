@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/linode/linodego"
+	"github.com/lgarber-akamai/linodego"
 )
 
 func TestAccountEvents_List(t *testing.T) {

@@ -7,7 +7,7 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/jarcoal/httpmock"
-	"github.com/linode/linodego"
+	"github.com/lgarber-akamai/linodego"
 )
 
 func TestTwoFactor_CreateSecret(t *testing.T) {

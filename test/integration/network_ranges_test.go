@@ -9,7 +9,7 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	. "github.com/linode/linodego"
+	. "github.com/lgarber-akamai/linodego"
 )
 
 var testIPv6RangeCreateOptions = IPv6RangeCreateOptions{

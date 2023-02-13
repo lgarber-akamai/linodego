@@ -7,7 +7,7 @@ import (
 	"testing"
 
 	"github.com/jarcoal/httpmock"
-	"github.com/linode/linodego"
+	"github.com/lgarber-akamai/linodego"
 )
 
 func TestClient_NGINXRetry(t *testing.T) {

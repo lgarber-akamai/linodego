@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"github.com/dnaeon/go-vcr/recorder"
-	. "github.com/linode/linodego"
+	. "github.com/lgarber-akamai/linodego"
 )
 
 // testImageBytes is a minimal Gzipped image.

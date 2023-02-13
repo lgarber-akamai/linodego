@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/linode/linodego"
+	"github.com/lgarber-akamai/linodego"
 )
 
 var testSnapshotLabel = "snapshot-linodego-testing"

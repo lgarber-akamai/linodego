@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/go-resty/resty/v2"
-	"github.com/linode/linodego/internal/parseabletime"
+	"github.com/lgarber-akamai/linodego/internal/parseabletime"
 )
 
 // Payment represents a Payment object

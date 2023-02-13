@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/linode/linodego"
+	"github.com/lgarber-akamai/linodego"
 )
 
 var spendMoney = false

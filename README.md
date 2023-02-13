@@ -1,9 +1,9 @@
 # linodego
 
 ![Build](https://img.shields.io/github/workflow/status/linode/linodego/Testing/main?label=tests)
-[![Release](https://img.shields.io/github/v/release/linode/linodego)](https://github.com/linode/linodego/releases/latest)
-[![GoDoc](https://godoc.org/github.com/linode/linodego?status.svg)](https://godoc.org/github.com/linode/linodego)
-[![Go Report Card](https://goreportcard.com/badge/github.com/linode/linodego)](https://goreportcard.com/report/github.com/linode/linodego)
+[![Release](https://img.shields.io/github/v/release/linode/linodego)](https://github.com/lgarber-akamai/linodego/releases/latest)
+[![GoDoc](https://godoc.org/github.com/lgarber-akamai/linodego?status.svg)](https://godoc.org/github.com/lgarber-akamai/linodego)
+[![Go Report Card](https://goreportcard.com/badge/github.com/lgarber-akamai/linodego)](https://goreportcard.com/report/github.com/lgarber-akamai/linodego)
 [![codecov](https://codecov.io/gh/linode/linodego/branch/main/graph/badge.svg)](https://codecov.io/gh/linode/linodego)
 
 Go client for [Linode REST v4 API](https://developers.linode.com/api/v4)
@@ -11,12 +11,12 @@ Go client for [Linode REST v4 API](https://developers.linode.com/api/v4)
 ## Installation
 
 ```sh
-go get -u github.com/linode/linodego
+go get -u github.com/lgarber-akamai/linodego
 ```
 
 ## Documentation
 
-See [godoc](https://godoc.org/github.com/linode/linodego) for a complete reference.
+See [godoc](https://godoc.org/github.com/lgarber-akamai/linodego) for a complete reference.
 
 The API generally follows the naming patterns prescribed in the [OpenAPIv3 document for Linode APIv4](https://developers.linode.com/api/v4).
 
@@ -35,7 +35,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/linode/linodego"
+	"github.com/lgarber-akamai/linodego"
 	"golang.org/x/oauth2"
 
 	"log"
@@ -146,7 +146,7 @@ linodes, err := linodego.ListInstances(context.Background(), linodego.NewListOpt
 ### Response Caching
 
 By default, certain endpoints with static responses will be cached into memory. 
-Endpoints with cached responses are identified in their [accompanying documentation](https://pkg.go.dev/github.com/linode/linodego?utm_source=godoc).
+Endpoints with cached responses are identified in their [accompanying documentation](https://pkg.go.dev/github.com/lgarber-akamai/linodego?utm_source=godoc).
 
 The default cache entry expiry time is `15` minutes. Certain endpoints may override this value to allow for more frequent refreshes (e.g. `client.GetRegion(...)`).
 The global cache expiry time can be customized using the `client.SetGlobalCacheExpiration(...)` method.

@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/go-resty/resty/v2"
-	"github.com/linode/linodego/internal/duration"
-	"github.com/linode/linodego/internal/parseabletime"
+	"github.com/lgarber-akamai/linodego/internal/duration"
+	"github.com/lgarber-akamai/linodego/internal/parseabletime"
 )
 
 // Event represents an action taken on the Account.

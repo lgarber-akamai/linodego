@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	"github.com/linode/linodego"
-	. "github.com/linode/linodego"
+	"github.com/lgarber-akamai/linodego"
+	. "github.com/lgarber-akamai/linodego"
 )
 
 func TestOAuthClient_GetMissing(t *testing.T) {

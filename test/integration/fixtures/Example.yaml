@@ -10,7 +10,7 @@ interactions:
         Content-Type:
           - application/json
         User-Agent:
-          - linodego/dev https://github.com/linode/linodego
+          - linodego/dev https://github.com/lgarber-akamai/linodego
       url: https://api.linode.com/v4beta/linode/instances/1231
       method: GET
     response:
@@ -52,7 +52,7 @@ interactions:
         Content-Type:
           - application/json
         User-Agent:
-          - linodego/dev https://github.com/linode/linodego
+          - linodego/dev https://github.com/lgarber-akamai/linodego
       url: https://api.linode.com/v4beta/linode/instances
       method: GET
     response:
@@ -227,7 +227,7 @@ interactions:
         Content-Type:
           - application/json
         User-Agent:
-          - linodego/dev https://github.com/linode/linodego
+          - linodego/dev https://github.com/lgarber-akamai/linodego
       url: https://api.linode.com/v4beta/linode/instances/29745916
       method: GET
     response:
@@ -291,7 +291,7 @@ interactions:
         Content-Type:
           - application/json
         User-Agent:
-          - linodego/dev https://github.com/linode/linodego
+          - linodego/dev https://github.com/lgarber-akamai/linodego
       url: https://api.linode.com/v4beta/linode/instances/29745916/configs
       method: GET
     response:
@@ -356,7 +356,7 @@ interactions:
         Content-Type:
           - application/json
         User-Agent:
-          - linodego/dev https://github.com/linode/linodego
+          - linodego/dev https://github.com/lgarber-akamai/linodego
       url: https://api.linode.com/v4beta/linode/instances/29745916/configs/31906080
       method: GET
     response:
@@ -420,7 +420,7 @@ interactions:
         Content-Type:
           - application/json
         User-Agent:
-          - linodego/dev https://github.com/linode/linodego
+          - linodego/dev https://github.com/lgarber-akamai/linodego
       url: https://api.linode.com/v4beta/linode/instances/29745916/disks
       method: GET
     response:
@@ -481,7 +481,7 @@ interactions:
         Content-Type:
           - application/json
         User-Agent:
-          - linodego/dev https://github.com/linode/linodego
+          - linodego/dev https://github.com/lgarber-akamai/linodego
       url: https://api.linode.com/v4beta/linode/instances/29745916/disks/60063322
       method: GET
     response:
@@ -540,7 +540,7 @@ interactions:
         Content-Type:
           - application/json
         User-Agent:
-          - linodego/dev https://github.com/linode/linodego
+          - linodego/dev https://github.com/lgarber-akamai/linodego
       url: https://api.linode.com/v4beta/linode/instances/29745916/backups
       method: GET
     response:
@@ -597,7 +597,7 @@ interactions:
         Content-Type:
           - application/json
         User-Agent:
-          - linodego/dev https://github.com/linode/linodego
+          - linodego/dev https://github.com/lgarber-akamai/linodego
       url: https://api.linode.com/v4beta/linode/instances/29745916/volumes
       method: GET
     response:
@@ -654,7 +654,7 @@ interactions:
         Content-Type:
           - application/json
         User-Agent:
-          - linodego/dev https://github.com/linode/linodego
+          - linodego/dev https://github.com/lgarber-akamai/linodego
         X-Filter:
           - '{"mine":true}'
       url: https://api.linode.com/v4beta/linode/stackscripts

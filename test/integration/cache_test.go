@@ -2,7 +2,7 @@ package integration
 
 import (
 	"context"
-	"github.com/linode/linodego"
+	"github.com/lgarber-akamai/linodego"
 	"strings"
 	"sync/atomic"
 	"testing"

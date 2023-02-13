@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/linode/linodego"
+	"github.com/lgarber-akamai/linodego"
 )
 
 type instanceModifier func(*linodego.Client, *linodego.InstanceCreateOptions)

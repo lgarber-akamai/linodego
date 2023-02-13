@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"testing"
 
-	"github.com/linode/linodego"
+	"github.com/lgarber-akamai/linodego"
 )
 
 func TestVLANs_List(t *testing.T) {

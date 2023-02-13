@@ -6,8 +6,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/linode/linodego"
-	k8scondition "github.com/linode/linodego/k8s/pkg/condition"
+	"github.com/lgarber-akamai/linodego"
+	k8scondition "github.com/lgarber-akamai/linodego/k8s/pkg/condition"
 )
 
 func TestLKECluster_GetMissing(t *testing.T) {

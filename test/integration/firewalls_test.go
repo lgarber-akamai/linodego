@@ -6,7 +6,7 @@ import (
 
 	"github.com/google/go-cmp/cmp"
 	"github.com/google/go-cmp/cmp/cmpopts"
-	"github.com/linode/linodego"
+	"github.com/lgarber-akamai/linodego"
 )
 
 var testFirewallCreateOpts = linodego.FirewallCreateOptions{

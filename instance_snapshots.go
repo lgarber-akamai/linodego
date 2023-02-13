@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/linode/linodego/internal/parseabletime"
+	"github.com/lgarber-akamai/linodego/internal/parseabletime"
 )
 
 // InstanceBackupsResponse response struct for backup snapshot

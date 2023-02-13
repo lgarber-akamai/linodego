@@ -10,7 +10,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/object-storage/buckets
     method: POST
   response:
@@ -69,7 +69,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/object-storage/buckets/us-east-1/linode-obj-bucket-cert-test.xyz/ssl
     method: POST
   response:
@@ -124,7 +124,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/object-storage/buckets/us-east-1/linode-obj-bucket-cert-test.xyz/ssl
     method: GET
   response:
@@ -181,7 +181,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/object-storage/buckets/us-east-1/linode-obj-bucket-cert-test.xyz/ssl
     method: DELETE
   response:
@@ -236,7 +236,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - linodego/dev https://github.com/linode/linodego
+      - linodego/dev https://github.com/lgarber-akamai/linodego
     url: https://api.linode.com/v4beta/object-storage/buckets/us-east-1/linode-obj-bucket-cert-test.xyz
     method: DELETE
   response:

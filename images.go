@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/go-resty/resty/v2"
-	"github.com/linode/linodego/internal/parseabletime"
+	"github.com/lgarber-akamai/linodego/internal/parseabletime"
 )
 
 // ImageStatus represents the status of an Image.
