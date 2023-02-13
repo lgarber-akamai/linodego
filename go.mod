@@ -1,4 +1,4 @@
-module github.com/linode/linodego
+module github.com/lgarber-akamai/linodego
 
 require (
 	github.com/go-resty/resty/v2 v2.1.1-0.20191201195748-d7b97669fe48
