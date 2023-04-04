@@ -18,7 +18,7 @@ type InstanceData struct {
 	InstanceID    int                  `json:"instance-id"`
 	CPUs          int                  `json:"cpus"`
 	Memory        int                  `json:"memory"`
-	Disk          int                  `json:"int"`
+	Disk          int                  `json:"disk"`
 	Backups       *InstanceBackupsData `json:"backups"`
 }
 
