@@ -16,9 +16,11 @@ const APIProto = "http"
 const APIVersion = "v1"
 
 type ClientCreateOptions struct {
-	HTTPClient      *http.Client
-	HostOverride    string
+	HTTPClient *http.Client
+
+	BaseURLOverride string
 	VersionOverride string
+	SchemeOverride  string
 
 	DisableTokenInit bool
 }
@@ -40,6 +42,14 @@ func NewClient(ctx context.Context, opts *ClientCreateOptions) (*Client, error) 
 	if opts != nil {
 		shouldUseHTTPClient = opts.HTTPClient != nil
 		shouldSkipTokenGeneration = opts.DisableTokenInit
+
+		if opts.BaseURLOverride != "" {
+			result.SetBaseURL(opts.BaseURLOverride)
+		}
+
+		if opts.VersionOverride != "" {
+			result.SetVersion(opts.VersionOverride)
+		}
 	}
 
 	if shouldUseHTTPClient {
