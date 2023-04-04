@@ -8,6 +8,7 @@ import (
 	"net/url"
 	"os"
 	"path"
+	"strconv"
 )
 
 const APIHost = "169.254.169.254"
@@ -47,8 +48,12 @@ func NewClient(ctx context.Context, opts *ClientCreateOptions) (*Client, error) 
 		result.resty = resty.New()
 	}
 
-	if debug, ok := os.LookupEnv("LINODE_DEBUG"); ok && debug == "1" {
-		result.resty.SetDebug(true)
+	if debugEnv, ok := os.LookupEnv("LINODE_DEBUG"); ok {
+		debugBool, err := strconv.ParseBool(debugEnv)
+		if err != nil {
+			return nil, fmt.Errorf("failed to parse debug bool: %s", err)
+		}
+		result.resty.SetDebug(debugBool)
 	}
 
 	result.updateHostURL()
