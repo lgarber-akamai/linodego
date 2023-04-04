@@ -35,7 +35,7 @@ func NewClient(ctx context.Context, opts *ClientCreateOptions) (*Client, error) 
 	var result Client
 
 	shouldUseHTTPClient := false
-	shouldSkipTokenGeneration := false
+	shouldSkipTokenGeneration := true
 
 	if opts != nil {
 		shouldUseHTTPClient = opts.HTTPClient != nil
