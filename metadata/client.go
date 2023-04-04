@@ -58,7 +58,7 @@ func NewClient(ctx context.Context, opts *ClientCreateOptions) (*Client, error) 
 
 	result.updateHostURL()
 
-	if shouldSkipTokenGeneration {
+	if !shouldSkipTokenGeneration {
 		token, err := result.GenerateToken(ctx, GenerateTokenOptions{})
 		if err != nil {
 			return nil, fmt.Errorf("failed to generate metadata token: %s", err)
