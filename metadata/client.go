@@ -10,9 +10,9 @@ import (
 	"path"
 )
 
-const MetadataHost = "169.254.169.254"
-const MetadataProto = "http"
-const MetadataAPIVersion = "v1"
+const APIHost = "169.254.169.254"
+const APIProto = "http"
+const APIVersion = "v1"
 
 type ClientCreateOptions struct {
 	HTTPClient      *http.Client
@@ -30,11 +30,16 @@ type Client struct {
 	apiVersion  string
 }
 
-func NewMetadataClient(ctx context.Context, opts *ClientCreateOptions) (*Client, error) {
+func NewClient(ctx context.Context, opts *ClientCreateOptions) (*Client, error) {
 	var result Client
 
-	shouldUseHTTPClient := opts != nil && opts.HTTPClient != nil
-	shouldGenerateToken := opts == nil || opts.DisableTokenInit
+	shouldUseHTTPClient := false
+	shouldSkipTokenGeneration := false
+
+	if opts != nil {
+		shouldUseHTTPClient = opts.HTTPClient != nil
+		shouldSkipTokenGeneration = opts.DisableTokenInit
+	}
 
 	if shouldUseHTTPClient {
 		result.resty = resty.NewWithClient(opts.HTTPClient)
@@ -48,7 +53,7 @@ func NewMetadataClient(ctx context.Context, opts *ClientCreateOptions) (*Client,
 
 	result.updateHostURL()
 
-	if shouldGenerateToken {
+	if shouldSkipTokenGeneration {
 		token, err := result.GenerateToken(ctx, GenerateTokenOptions{})
 		if err != nil {
 			return nil, fmt.Errorf("failed to generate metadata token: %s", err)
@@ -85,9 +90,9 @@ func (c *Client) SetVersion(version string) *Client {
 }
 
 func (c *Client) updateHostURL() {
-	apiProto := MetadataProto
-	baseURL := MetadataHost
-	apiVersion := MetadataAPIVersion
+	apiProto := APIProto
+	baseURL := APIHost
+	apiVersion := APIVersion
 
 	if c.apiBaseURL != "" {
 		baseURL = c.apiBaseURL
