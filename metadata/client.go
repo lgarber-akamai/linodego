@@ -88,7 +88,7 @@ func (c *Client) RefreshToken(ctx context.Context) (*Client, error) {
 		return nil, fmt.Errorf("failed to generate metadata token: %s", err)
 	}
 
-	c.UseToken(token)
+	c.UseToken(token.Token)
 
 	return c, nil
 }

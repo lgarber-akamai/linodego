@@ -2,15 +2,27 @@ package metadata
 
 import (
 	"context"
+	"math"
 	"strconv"
+	"time"
 )
 
 type GenerateTokenOptions struct {
 	ExpirySeconds int
 }
 
-func (c *Client) GenerateToken(ctx context.Context, opts GenerateTokenOptions) (string, error) {
-	req := c.R(ctx)
+type TokenData struct {
+	Token         string `json:"token"`
+	ExpirySeconds int
+	Created       time.Time
+}
+
+func (t *TokenData) IsExpired() bool {
+	return int(math.Ceil(time.Since(t.Created).Seconds())) > t.ExpirySeconds
+}
+
+func (c *Client) GenerateToken(ctx context.Context, opts GenerateTokenOptions) (*TokenData, error) {
+	req := c.R(ctx).SetResult(&TokenData{})
 
 	tokenExpirySeconds := 3600
 	if opts.ExpirySeconds != 0 {
@@ -21,8 +33,12 @@ func (c *Client) GenerateToken(ctx context.Context, opts GenerateTokenOptions) (
 
 	resp, err := req.Put("token")
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
-	return resp.String(), nil
+	token := resp.Result().(*TokenData)
+	token.ExpirySeconds = tokenExpirySeconds
+	token.Created = time.Now()
+
+	return token, nil
 }

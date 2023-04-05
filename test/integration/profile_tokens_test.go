@@ -53,7 +53,7 @@ func TestToken_GetFound(t *testing.T) {
 
 	createOpts := i.GetCreateOptions()
 	if createOpts.Expiry == nil {
-		t.Errorf("Expected non-nil Expiry from GetCreateOptions, got: %v", createOpts)
+		t.Errorf("Expected non-nil ExpirySeconds from GetCreateOptions, got: %v", createOpts)
 	}
 }
 
@@ -89,7 +89,7 @@ func TestTokens_Update(t *testing.T) {
 
 	createOpts := token.GetCreateOptions()
 	if createOpts.Expiry == nil {
-		t.Errorf("Expected non-nil Expiry from GetCreateOptions, got: %v", createOpts)
+		t.Errorf("Expected non-nil ExpirySeconds from GetCreateOptions, got: %v", createOpts)
 	}
 
 	updateOpts := token.GetUpdateOptions()
