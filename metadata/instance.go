@@ -10,16 +10,16 @@ type InstanceBackupsData struct {
 }
 
 type InstanceData struct {
-	LocalHostname string               `json:"local-hostname"`
-	Region        string               `json:"region"`
-	Type          string               `json:"type"`
-	Machine       string               `json:"string"`
-	ID            int                  `json:"id"`
-	InstanceID    int                  `json:"instance-id"`
-	CPUs          int                  `json:"cpus"`
-	Memory        int                  `json:"memory"`
-	Disk          int                  `json:"disk"`
-	Backups       *InstanceBackupsData `json:"backups"`
+	LocalHostname string              `json:"local-hostname"`
+	Region        string              `json:"region"`
+	Type          string              `json:"type"`
+	Machine       string              `json:"string"`
+	ID            int                 `json:"id"`
+	InstanceID    int                 `json:"instance-id"`
+	CPUs          int                 `json:"cpus"`
+	Memory        int                 `json:"memory"`
+	Disk          int                 `json:"disk"`
+	Backups       InstanceBackupsData `json:"backups"`
 }
 
 func (c *Client) GetInstance(ctx context.Context) (*InstanceData, error) {
