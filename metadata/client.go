@@ -69,12 +69,9 @@ func NewClient(ctx context.Context, opts *ClientCreateOptions) (*Client, error) 
 	result.updateHostURL()
 
 	if !shouldSkipTokenGeneration {
-		token, err := result.GenerateToken(ctx, GenerateTokenOptions{})
-		if err != nil {
-			return nil, fmt.Errorf("failed to generate metadata token: %s", err)
+		if _, err := result.RefreshToken(ctx); err != nil {
+			return nil, fmt.Errorf("failed to refresh metadata token: %s", err)
 		}
-
-		result.UseToken(token)
 	}
 
 	return &result, nil
@@ -83,6 +80,17 @@ func NewClient(ctx context.Context, opts *ClientCreateOptions) (*Client, error) 
 func (c *Client) UseToken(token string) *Client {
 	c.resty.SetHeader("X-Metadata-Token", token)
 	return c
+}
+
+func (c *Client) RefreshToken(ctx context.Context) (*Client, error) {
+	token, err := c.GenerateToken(ctx, GenerateTokenOptions{})
+	if err != nil {
+		return nil, fmt.Errorf("failed to generate metadata token: %s", err)
+	}
+
+	c.UseToken(token)
+
+	return c, nil
 }
 
 func (c *Client) SetBaseURL(baseURL string) *Client {
