@@ -22,7 +22,10 @@ func (t *TokenData) IsExpired() bool {
 }
 
 func (c *Client) GenerateToken(ctx context.Context, opts GenerateTokenOptions) (*TokenData, error) {
-	req := c.R(ctx)
+	// Temporary override so things don't break
+	req := c.R(ctx).
+		ExpectContentType("text/plain").
+		SetHeader("Content-Type", "text/plain")
 
 	tokenExpirySeconds := 3600
 	if opts.ExpirySeconds != 0 {
