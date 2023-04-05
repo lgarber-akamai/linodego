@@ -10,7 +10,7 @@ type IPv4Data struct {
 
 type IPv6Data struct {
 	Ranges        []string `json:"ranges"`
-	LinkLocal     []string `json:"link-local"`
+	LinkLocal     string   `json:"link-local"`
 	ElasticRanges []string `json:"elastic-ranges"`
 }
 
