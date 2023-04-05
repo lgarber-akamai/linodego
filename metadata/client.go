@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/go-resty/resty/v2"
+	"github.com/linode/linodego"
 	"net/http"
 	"net/url"
 	"os"
@@ -20,7 +21,8 @@ type ClientCreateOptions struct {
 
 	BaseURLOverride string
 	VersionOverride string
-	SchemeOverride  string
+
+	UserAgentPrefix string
 
 	DisableTokenInit bool
 }
@@ -31,6 +33,7 @@ type Client struct {
 	apiBaseURL  string
 	apiProtocol string
 	apiVersion  string
+	userAgent   string
 }
 
 func NewClient(ctx context.Context, opts *ClientCreateOptions) (*Client, error) {
@@ -38,6 +41,8 @@ func NewClient(ctx context.Context, opts *ClientCreateOptions) (*Client, error) 
 
 	shouldUseHTTPClient := false
 	shouldSkipTokenGeneration := false
+	// We might need to move the version to a subpackage to prevent a cyclic dependency
+	userAgent := linodego.DefaultUserAgent
 
 	if opts != nil {
 		shouldUseHTTPClient = opts.HTTPClient != nil
@@ -49,6 +54,10 @@ func NewClient(ctx context.Context, opts *ClientCreateOptions) (*Client, error) 
 
 		if opts.VersionOverride != "" {
 			result.SetVersion(opts.VersionOverride)
+		}
+
+		if opts.UserAgentPrefix != "" {
+			userAgent = fmt.Sprintf("%s %s", opts.UserAgentPrefix, userAgent)
 		}
 	}
 
@@ -67,6 +76,8 @@ func NewClient(ctx context.Context, opts *ClientCreateOptions) (*Client, error) 
 	}
 
 	result.updateHostURL()
+
+	result.SetUserAgent(userAgent)
 
 	if !shouldSkipTokenGeneration {
 		if _, err := result.RefreshToken(ctx); err != nil {
@@ -138,4 +149,11 @@ func (c *Client) R(ctx context.Context) *resty.Request {
 		ExpectContentType("application/json").
 		SetHeader("Content-Type", "application/json").
 		SetContext(ctx)
+}
+
+func (c *Client) SetUserAgent(userAgent string) *Client {
+	c.userAgent = userAgent
+	c.resty.SetHeader("User-Agent", c.userAgent)
+
+	return c
 }

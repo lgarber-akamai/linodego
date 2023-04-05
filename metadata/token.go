@@ -22,7 +22,7 @@ func (t *TokenData) IsExpired() bool {
 }
 
 func (c *Client) GenerateToken(ctx context.Context, opts GenerateTokenOptions) (*TokenData, error) {
-	req := c.R(ctx).SetResult(&TokenData{})
+	req := c.R(ctx)
 
 	tokenExpirySeconds := 3600
 	if opts.ExpirySeconds != 0 {
@@ -36,9 +36,9 @@ func (c *Client) GenerateToken(ctx context.Context, opts GenerateTokenOptions) (
 		return nil, err
 	}
 
-	token := resp.Result().(*TokenData)
-	token.ExpirySeconds = tokenExpirySeconds
-	token.Created = time.Now()
-
-	return token, nil
+	return &TokenData{
+		Token:         resp.String(),
+		ExpirySeconds: tokenExpirySeconds,
+		Created:       time.Now(),
+	}, nil
 }
