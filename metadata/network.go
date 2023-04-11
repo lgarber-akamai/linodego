@@ -2,18 +2,19 @@ package metadata
 
 import (
 	"context"
+	"net/netip"
 )
 
 type IPv4Data struct {
-	Public  []IPNet `json:"public"`
-	Private []IPNet `json:"private"`
-	Elastic []IPNet `json:"elastic"`
+	Public  []netip.Prefix `json:"public"`
+	Private []netip.Prefix `json:"private"`
+	Elastic []netip.Prefix `json:"elastic"`
 }
 
 type IPv6Data struct {
-	Ranges        []IPNet `json:"ranges"`
-	LinkLocal     IPNet   `json:"link-local"`
-	ElasticRanges []IPNet `json:"elastic-ranges"`
+	Ranges        []netip.Prefix `json:"ranges"`
+	LinkLocal     netip.Prefix   `json:"link-local"`
+	ElasticRanges []netip.Prefix `json:"elastic-ranges"`
 }
 
 type NetworkData struct {
