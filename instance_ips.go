@@ -68,7 +68,7 @@ const (
 func (c *Client) GetInstanceIPAddresses(ctx context.Context, linodeID int) (*InstanceIPAddressResponse, error) {
 	e := fmt.Sprintf("linode/instances/%d/ips", linodeID)
 	req := c.R(ctx).SetResult(&InstanceIPAddressResponse{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -79,7 +79,7 @@ func (c *Client) GetInstanceIPAddresses(ctx context.Context, linodeID int) (*Ins
 func (c *Client) GetInstanceIPAddress(ctx context.Context, linodeID int, ipaddress string) (*InstanceIP, error) {
 	e := fmt.Sprintf("linode/instances/%d/ips/%s", linodeID, ipaddress)
 	req := c.R(ctx).SetResult(&InstanceIP{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -101,7 +101,7 @@ func (c *Client) AddInstanceIPAddress(ctx context.Context, linodeID int, public 
 
 	e := fmt.Sprintf("linode/instances/%d/ips", linodeID)
 	req := c.R(ctx).SetResult(&InstanceIP{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -118,7 +118,7 @@ func (c *Client) UpdateInstanceIPAddress(ctx context.Context, linodeID int, ipAd
 
 	e := fmt.Sprintf("linode/instances/%d/ips/%s", linodeID, ipAddress)
 	req := c.R(ctx).SetResult(&InstanceIP{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}
@@ -127,6 +127,6 @@ func (c *Client) UpdateInstanceIPAddress(ctx context.Context, linodeID int, ipAd
 
 func (c *Client) DeleteInstanceIPAddress(ctx context.Context, linodeID int, ipAddress string) error {
 	e := fmt.Sprintf("linode/instances/%d/ips/%s", linodeID, ipAddress)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }

@@ -40,11 +40,12 @@ func (r APIErrorReason) Error() string {
 }
 
 // APIError is the error-set returned by the Linode API when presented with an invalid request
+// TODO: Alias this and move into a sub-package to be reused.
 type APIError struct {
 	Errors []APIErrorReason `json:"errors"`
 }
 
-func coupleAPIErrors(r *resty.Response, err error) (*resty.Response, error) {
+func CoupleAPIErrors(r *resty.Response, err error) (*resty.Response, error) {
 	if err != nil {
 		return nil, NewError(err)
 	}

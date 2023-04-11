@@ -2,6 +2,7 @@ package metadata
 
 import (
 	"context"
+	"github.com/linode/linodego"
 	"net/netip"
 )
 
@@ -33,7 +34,7 @@ type NetworkData struct {
 func (c *Client) GetNetwork(ctx context.Context) (*NetworkData, error) {
 	req := c.R(ctx).SetResult(&NetworkData{})
 
-	resp, err := req.Get("network")
+	resp, err := linodego.CoupleAPIErrors(req.Get("network"))
 	if err != nil {
 		return nil, err
 	}

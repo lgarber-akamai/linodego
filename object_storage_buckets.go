@@ -90,7 +90,7 @@ func (ObjectStorageBucketsPagedResponse) endpoint(args ...any) string {
 }
 
 func (resp *ObjectStorageBucketsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(ObjectStorageBucketsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(ObjectStorageBucketsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -124,7 +124,7 @@ func (c *Client) GetObjectStorageBucket(ctx context.Context, clusterID, label st
 	label = url.PathEscape(label)
 	e := fmt.Sprintf("object-storage/buckets/%s/%s", clusterID, label)
 	req := c.R(ctx).SetResult(&ObjectStorageBucket{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -140,7 +140,7 @@ func (c *Client) CreateObjectStorageBucket(ctx context.Context, opts ObjectStora
 
 	e := "object-storage/buckets"
 	req := c.R(ctx).SetResult(&ObjectStorageBucket{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -152,7 +152,7 @@ func (c *Client) GetObjectStorageBucketAccess(ctx context.Context, clusterID, la
 	label = url.PathEscape(label)
 	e := fmt.Sprintf("object-storage/buckets/%s/%s/access", clusterID, label)
 	req := c.R(ctx).SetResult(&ObjectStorageBucketAccess{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -169,7 +169,7 @@ func (c *Client) UpdateObjectStorageBucketAccess(ctx context.Context, clusterID,
 
 	label = url.PathEscape(label)
 	e := fmt.Sprintf("object-storage/buckets/%s/%s/access", clusterID, label)
-	_, err = coupleAPIErrors(c.R(ctx).SetBody(string(body)).Post(e))
+	_, err = CoupleAPIErrors(c.R(ctx).SetBody(string(body)).Post(e))
 	if err != nil {
 		return err
 	}
@@ -181,6 +181,6 @@ func (c *Client) UpdateObjectStorageBucketAccess(ctx context.Context, clusterID,
 func (c *Client) DeleteObjectStorageBucket(ctx context.Context, clusterID, label string) error {
 	label = url.PathEscape(label)
 	e := fmt.Sprintf("object-storage/buckets/%s/%s", clusterID, label)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }

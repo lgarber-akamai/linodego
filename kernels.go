@@ -30,7 +30,7 @@ func (LinodeKernelsPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *LinodeKernelsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(LinodeKernelsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(LinodeKernelsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -72,7 +72,7 @@ func (c *Client) GetKernel(ctx context.Context, kernelID string) (*LinodeKernel,
 	}
 
 	req := c.R(ctx).SetResult(&LinodeKernel{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}

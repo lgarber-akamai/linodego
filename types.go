@@ -59,7 +59,7 @@ func (*LinodeTypesPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *LinodeTypesPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(LinodeTypesPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(LinodeTypesPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -101,7 +101,7 @@ func (c *Client) GetType(ctx context.Context, typeID string) (*LinodeType, error
 	}
 
 	req := c.R(ctx).SetResult(LinodeType{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}

@@ -47,7 +47,7 @@ func (VLANsPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *VLANsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(VLANsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(VLANsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}

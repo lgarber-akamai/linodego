@@ -37,7 +37,7 @@ type InstanceStats struct {
 func (c *Client) GetInstanceStats(ctx context.Context, linodeID int) (*InstanceStats, error) {
 	e := fmt.Sprintf("linode/instances/%d/stats", linodeID)
 	req := c.R(ctx).SetResult(&InstanceStats{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -48,7 +48,7 @@ func (c *Client) GetInstanceStats(ctx context.Context, linodeID int) (*InstanceS
 func (c *Client) GetInstanceStatsByDate(ctx context.Context, linodeID int, year int, month int) (*InstanceStats, error) {
 	e := fmt.Sprintf("linode/instances/%d/stats/%d/%d", linodeID, year, month)
 	req := c.R(ctx).SetResult(&InstanceStats{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}

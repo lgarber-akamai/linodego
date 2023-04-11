@@ -98,7 +98,7 @@ func (LKENodePoolsPagedResponse) endpoint(ids ...any) string {
 }
 
 func (resp *LKENodePoolsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(LKENodePoolsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(LKENodePoolsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -122,7 +122,7 @@ func (c *Client) ListLKENodePools(ctx context.Context, clusterID int, opts *List
 func (c *Client) GetLKENodePool(ctx context.Context, clusterID, poolID int) (*LKENodePool, error) {
 	e := fmt.Sprintf("lke/clusters/%d/pools/%d", clusterID, poolID)
 	req := c.R(ctx).SetResult(&LKENodePool{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -138,7 +138,7 @@ func (c *Client) CreateLKENodePool(ctx context.Context, clusterID int, opts LKEN
 
 	e := fmt.Sprintf("lke/clusters/%d/pools", clusterID)
 	req := c.R(ctx).SetResult(&LKENodePool{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -154,7 +154,7 @@ func (c *Client) UpdateLKENodePool(ctx context.Context, clusterID, poolID int, o
 
 	e := fmt.Sprintf("lke/clusters/%d/pools/%d", clusterID, poolID)
 	req := c.R(ctx).SetResult(&LKENodePool{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}
@@ -164,13 +164,13 @@ func (c *Client) UpdateLKENodePool(ctx context.Context, clusterID, poolID int, o
 // DeleteLKENodePool deletes the LKENodePool with the specified id
 func (c *Client) DeleteLKENodePool(ctx context.Context, clusterID, poolID int) error {
 	e := fmt.Sprintf("lke/clusters/%d/pools/%d", clusterID, poolID)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }
 
 // DeleteLKENodePoolNode deletes a given node from a node pool
 func (c *Client) DeleteLKENodePoolNode(ctx context.Context, clusterID int, nodeID string) error {
 	e := fmt.Sprintf("lke/clusters/%d/nodes/%s", clusterID, nodeID)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }

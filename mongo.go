@@ -118,7 +118,7 @@ func (MongoDatabasesPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *MongoDatabasesPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(MongoDatabasesPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(MongoDatabasesPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -182,7 +182,7 @@ func (MongoDatabaseBackupsPagedResponse) endpoint(ids ...any) string {
 }
 
 func (resp *MongoDatabaseBackupsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(MongoDatabaseBackupsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(MongoDatabaseBackupsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -207,7 +207,7 @@ func (c *Client) ListMongoDatabaseBackups(ctx context.Context, databaseID int, o
 func (c *Client) GetMongoDatabase(ctx context.Context, databaseID int) (*MongoDatabase, error) {
 	e := fmt.Sprintf("databases/mongodb/instances/%d", databaseID)
 	req := c.R(ctx).SetResult(&MongoDatabase{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -224,7 +224,7 @@ func (c *Client) CreateMongoDatabase(ctx context.Context, opts MongoCreateOption
 
 	e := "databases/mongodb/instances"
 	req := c.R(ctx).SetResult(&MongoDatabase{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -234,7 +234,7 @@ func (c *Client) CreateMongoDatabase(ctx context.Context, opts MongoCreateOption
 // DeleteMongoDatabase deletes an existing Mongo Database with the given id
 func (c *Client) DeleteMongoDatabase(ctx context.Context, databaseID int) error {
 	e := fmt.Sprintf("databases/mongodb/instances/%d", databaseID)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }
 
@@ -247,7 +247,7 @@ func (c *Client) UpdateMongoDatabase(ctx context.Context, databaseID int, opts M
 
 	e := fmt.Sprintf("databases/mongodb/instances/%d", databaseID)
 	req := c.R(ctx).SetResult(&MongoDatabase{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}
@@ -258,7 +258,7 @@ func (c *Client) UpdateMongoDatabase(ctx context.Context, databaseID int, opts M
 // PatchMongoDatabase applies security patches and updates to the underlying operating system of the Managed Mongo Database
 func (c *Client) PatchMongoDatabase(ctx context.Context, databaseID int) error {
 	e := fmt.Sprintf("databases/mongodb/instances/%d/patch", databaseID)
-	_, err := coupleAPIErrors(c.R(ctx).Post(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Post(e))
 	return err
 }
 
@@ -266,7 +266,7 @@ func (c *Client) PatchMongoDatabase(ctx context.Context, databaseID int) error {
 func (c *Client) GetMongoDatabaseCredentials(ctx context.Context, databaseID int) (*MongoDatabaseCredential, error) {
 	e := fmt.Sprintf("databases/mongodb/instances/%d/credentials", databaseID)
 	req := c.R(ctx).SetResult(&MongoDatabaseCredential{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -277,7 +277,7 @@ func (c *Client) GetMongoDatabaseCredentials(ctx context.Context, databaseID int
 // ResetMongoDatabaseCredentials returns the Root Credentials for the given Mongo Database (may take a few seconds to work)
 func (c *Client) ResetMongoDatabaseCredentials(ctx context.Context, databaseID int) error {
 	e := fmt.Sprintf("databases/mongodb/instances/%d/credentials/reset", databaseID)
-	_, err := coupleAPIErrors(c.R(ctx).Post(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Post(e))
 	return err
 }
 
@@ -285,7 +285,7 @@ func (c *Client) ResetMongoDatabaseCredentials(ctx context.Context, databaseID i
 func (c *Client) GetMongoDatabaseSSL(ctx context.Context, databaseID int) (*MongoDatabaseSSL, error) {
 	e := fmt.Sprintf("databases/mongodb/instances/%d/ssl", databaseID)
 	req := c.R(ctx).SetResult(&MongoDatabaseSSL{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -297,7 +297,7 @@ func (c *Client) GetMongoDatabaseSSL(ctx context.Context, databaseID int) (*Mong
 func (c *Client) GetMongoDatabaseBackup(ctx context.Context, databaseID int, backupID int) (*MongoDatabaseBackup, error) {
 	e := fmt.Sprintf("databases/mongodb/instances/%d/backups/%d", databaseID, backupID)
 	req := c.R(ctx).SetResult(&MongoDatabaseBackup{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -308,7 +308,7 @@ func (c *Client) GetMongoDatabaseBackup(ctx context.Context, databaseID int, bac
 // RestoreMongoDatabaseBackup returns the given Mongo Database with the given Backup
 func (c *Client) RestoreMongoDatabaseBackup(ctx context.Context, databaseID int, backupID int) error {
 	e := fmt.Sprintf("databases/mongodb/instances/%d/backups/%d/restore", databaseID, backupID)
-	_, err := coupleAPIErrors(c.R(ctx).Post(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Post(e))
 	return err
 }
 
@@ -319,6 +319,6 @@ func (c *Client) CreateMongoDatabaseBackup(ctx context.Context, databaseID int, 
 		return err
 	}
 	e := fmt.Sprintf("databases/mongodb/instances/%d/backups", databaseID)
-	_, err = coupleAPIErrors(c.R(ctx).SetBody(string(body)).Post(e))
+	_, err = CoupleAPIErrors(c.R(ctx).SetBody(string(body)).Post(e))
 	return err
 }

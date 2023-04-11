@@ -29,7 +29,7 @@ func (LongviewSubscriptionsPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *LongviewSubscriptionsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(LongviewSubscriptionsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(LongviewSubscriptionsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -52,7 +52,7 @@ func (c *Client) ListLongviewSubscriptions(ctx context.Context, opts *ListOption
 func (c *Client) GetLongviewSubscription(ctx context.Context, templateID string) (*LongviewSubscription, error) {
 	e := fmt.Sprintf("longview/subscriptions/%s", templateID)
 	req := c.R(ctx).SetResult(&LongviewSubscription{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}

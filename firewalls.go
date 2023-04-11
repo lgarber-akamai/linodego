@@ -93,7 +93,7 @@ func (FirewallsPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *FirewallsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(FirewallsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(FirewallsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -123,7 +123,7 @@ func (c *Client) CreateFirewall(ctx context.Context, opts FirewallCreateOptions)
 
 	e := "networking/firewalls"
 	req := c.R(ctx).SetResult(&Firewall{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -135,7 +135,7 @@ func (c *Client) CreateFirewall(ctx context.Context, opts FirewallCreateOptions)
 func (c *Client) GetFirewall(ctx context.Context, firewallID int) (*Firewall, error) {
 	e := fmt.Sprintf("networking/firewalls/%d", firewallID)
 	req := c.R(ctx).SetResult(&Firewall{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -152,7 +152,7 @@ func (c *Client) UpdateFirewall(ctx context.Context, firewallID int, opts Firewa
 
 	e := fmt.Sprintf("networking/firewalls/%d", firewallID)
 	req := c.R(ctx).SetResult(&Firewall{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}
@@ -163,6 +163,6 @@ func (c *Client) UpdateFirewall(ctx context.Context, firewallID int, opts Firewa
 // DeleteFirewall deletes a single Firewall with the provided ID
 func (c *Client) DeleteFirewall(ctx context.Context, firewallID int) error {
 	e := fmt.Sprintf("networking/firewalls/%d", firewallID)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }

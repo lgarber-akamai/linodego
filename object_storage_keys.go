@@ -48,7 +48,7 @@ func (ObjectStorageKeysPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *ObjectStorageKeysPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(ObjectStorageKeysPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(ObjectStorageKeysPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -76,7 +76,7 @@ func (c *Client) CreateObjectStorageKey(ctx context.Context, opts ObjectStorageK
 
 	e := "object-storage/keys"
 	req := c.R(ctx).SetResult(&ObjectStorageKey{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -87,7 +87,7 @@ func (c *Client) CreateObjectStorageKey(ctx context.Context, opts ObjectStorageK
 func (c *Client) GetObjectStorageKey(ctx context.Context, keyID int) (*ObjectStorageKey, error) {
 	e := fmt.Sprintf("object-storage/keys/%d", keyID)
 	req := c.R(ctx).SetResult(&ObjectStorageKey{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -103,7 +103,7 @@ func (c *Client) UpdateObjectStorageKey(ctx context.Context, keyID int, opts Obj
 
 	e := fmt.Sprintf("object-storage/keys/%d", keyID)
 	req := c.R(ctx).SetResult(&ObjectStorageKey{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}
@@ -113,6 +113,6 @@ func (c *Client) UpdateObjectStorageKey(ctx context.Context, keyID int, opts Obj
 // DeleteObjectStorageKey deletes the ObjectStorageKey with the specified id
 func (c *Client) DeleteObjectStorageKey(ctx context.Context, keyID int) error {
 	e := fmt.Sprintf("object-storage/keys/%d", keyID)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }

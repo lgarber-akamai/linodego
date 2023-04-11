@@ -120,7 +120,7 @@ func (VolumesPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *VolumesPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(VolumesPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(VolumesPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -143,7 +143,7 @@ func (c *Client) ListVolumes(ctx context.Context, opts *ListOptions) ([]Volume, 
 func (c *Client) GetVolume(ctx context.Context, volumeID int) (*Volume, error) {
 	e := fmt.Sprintf("volumes/%d", volumeID)
 	req := c.R(ctx).SetResult(&Volume{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -159,7 +159,7 @@ func (c *Client) AttachVolume(ctx context.Context, volumeID int, opts *VolumeAtt
 
 	e := fmt.Sprintf("volumes/%d/attach", volumeID)
 	req := c.R(ctx).SetResult(&Volume{}).SetBody(string(body))
-	resp, err := coupleAPIErrors(req.Post(e))
+	resp, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -176,7 +176,7 @@ func (c *Client) CreateVolume(ctx context.Context, opts VolumeCreateOptions) (*V
 
 	e := "volumes"
 	req := c.R(ctx).SetResult(&Volume{}).SetBody(string(body))
-	resp, err := coupleAPIErrors(req.Post(e))
+	resp, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -193,7 +193,7 @@ func (c *Client) UpdateVolume(ctx context.Context, volumeID int, opts VolumeUpda
 
 	e := fmt.Sprintf("volumes/%d", volumeID)
 	req := c.R(ctx).SetResult(&Volume{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}
@@ -206,7 +206,7 @@ func (c *Client) CloneVolume(ctx context.Context, volumeID int, label string) (*
 	body := fmt.Sprintf("{\"label\":\"%s\"}", label)
 	e := fmt.Sprintf("volumes/%d/clone", volumeID)
 	req := c.R(ctx).SetResult(&Volume{}).SetBody(body)
-	resp, err := coupleAPIErrors(req.Post(e))
+	resp, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -218,7 +218,7 @@ func (c *Client) CloneVolume(ctx context.Context, volumeID int, label string) (*
 func (c *Client) DetachVolume(ctx context.Context, volumeID int) error {
 	body := ""
 	e := fmt.Sprintf("volumes/%d/detach", volumeID)
-	_, err := coupleAPIErrors(c.R(ctx).SetBody(body).Post(e))
+	_, err := CoupleAPIErrors(c.R(ctx).SetBody(body).Post(e))
 	return err
 }
 
@@ -226,13 +226,13 @@ func (c *Client) DetachVolume(ctx context.Context, volumeID int) error {
 func (c *Client) ResizeVolume(ctx context.Context, volumeID int, size int) error {
 	body := fmt.Sprintf("{\"size\": %d}", size)
 	e := fmt.Sprintf("volumes/%d/resize", volumeID)
-	_, err := coupleAPIErrors(c.R(ctx).SetBody(body).Post(e))
+	_, err := CoupleAPIErrors(c.R(ctx).SetBody(body).Post(e))
 	return err
 }
 
 // DeleteVolume deletes the Volume with the specified id
 func (c *Client) DeleteVolume(ctx context.Context, volumeID int) error {
 	e := fmt.Sprintf("volumes/%d", volumeID)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }

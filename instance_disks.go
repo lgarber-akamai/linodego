@@ -79,7 +79,7 @@ func (InstanceDisksPagedResponse) endpoint(ids ...any) string {
 }
 
 func (resp *InstanceDisksPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(InstanceDisksPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(InstanceDisksPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -124,7 +124,7 @@ func (i *InstanceDisk) UnmarshalJSON(b []byte) error {
 func (c *Client) GetInstanceDisk(ctx context.Context, linodeID int, diskID int) (*InstanceDisk, error) {
 	e := fmt.Sprintf("linode/instances/%d/disks/%d", linodeID, diskID)
 	req := c.R(ctx).SetResult(&InstanceDisk{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -140,7 +140,7 @@ func (c *Client) CreateInstanceDisk(ctx context.Context, linodeID int, opts Inst
 
 	e := fmt.Sprintf("linode/instances/%d/disks", linodeID)
 	req := c.R(ctx).SetResult(&InstanceDisk{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -157,7 +157,7 @@ func (c *Client) UpdateInstanceDisk(ctx context.Context, linodeID int, diskID in
 
 	e := fmt.Sprintf("linode/instances/%d/disks/%d", linodeID, diskID)
 	req := c.R(ctx).SetResult(&InstanceDisk{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}
@@ -183,7 +183,7 @@ func (c *Client) ResizeInstanceDisk(ctx context.Context, linodeID int, diskID in
 
 	e := fmt.Sprintf("linode/instances/%d/disks/%d/resize", linodeID, diskID)
 	req := c.R(ctx).SetResult(&InstanceDisk{}).SetBody(body)
-	_, err = coupleAPIErrors(req.Post(e))
+	_, err = CoupleAPIErrors(req.Post(e))
 	return err
 }
 
@@ -200,13 +200,13 @@ func (c *Client) PasswordResetInstanceDisk(ctx context.Context, linodeID int, di
 
 	e := fmt.Sprintf("linode/instances/%d/disks/%d/password", linodeID, diskID)
 	req := c.R(ctx).SetResult(&InstanceDisk{}).SetBody(string(body))
-	_, err = coupleAPIErrors(req.SetBody(body).Post(e))
+	_, err = CoupleAPIErrors(req.SetBody(body).Post(e))
 	return err
 }
 
 // DeleteInstanceDisk deletes a Linode Instance Disk
 func (c *Client) DeleteInstanceDisk(ctx context.Context, linodeID int, diskID int) error {
 	e := fmt.Sprintf("linode/instances/%d/disks/%d", linodeID, diskID)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }

@@ -122,7 +122,7 @@ func (MySQLDatabasesPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *MySQLDatabasesPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(MySQLDatabasesPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(MySQLDatabasesPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -165,7 +165,7 @@ func (MySQLDatabaseBackupsPagedResponse) endpoint(ids ...any) string {
 }
 
 func (resp *MySQLDatabaseBackupsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(MySQLDatabaseBackupsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(MySQLDatabaseBackupsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -190,7 +190,7 @@ func (c *Client) ListMySQLDatabaseBackups(ctx context.Context, databaseID int, o
 func (c *Client) GetMySQLDatabase(ctx context.Context, databaseID int) (*MySQLDatabase, error) {
 	e := fmt.Sprintf("databases/mysql/instances/%d", databaseID)
 	req := c.R(ctx).SetResult(&MySQLDatabase{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -207,7 +207,7 @@ func (c *Client) CreateMySQLDatabase(ctx context.Context, opts MySQLCreateOption
 
 	e := "databases/mysql/instances"
 	req := c.R(ctx).SetResult(&MySQLDatabase{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -217,7 +217,7 @@ func (c *Client) CreateMySQLDatabase(ctx context.Context, opts MySQLCreateOption
 // DeleteMySQLDatabase deletes an existing MySQL Database with the given id
 func (c *Client) DeleteMySQLDatabase(ctx context.Context, databaseID int) error {
 	e := fmt.Sprintf("databases/mysql/instances/%d", databaseID)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }
 
@@ -230,7 +230,7 @@ func (c *Client) UpdateMySQLDatabase(ctx context.Context, databaseID int, opts M
 
 	e := fmt.Sprintf("databases/mysql/instances/%d", databaseID)
 	req := c.R(ctx).SetResult(&MySQLDatabase{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}
@@ -242,7 +242,7 @@ func (c *Client) UpdateMySQLDatabase(ctx context.Context, databaseID int, opts M
 func (c *Client) GetMySQLDatabaseSSL(ctx context.Context, databaseID int) (*MySQLDatabaseSSL, error) {
 	e := fmt.Sprintf("databases/mysql/instances/%d/ssl", databaseID)
 	req := c.R(ctx).SetResult(&MySQLDatabaseSSL{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -254,7 +254,7 @@ func (c *Client) GetMySQLDatabaseSSL(ctx context.Context, databaseID int) (*MySQ
 func (c *Client) GetMySQLDatabaseCredentials(ctx context.Context, databaseID int) (*MySQLDatabaseCredential, error) {
 	e := fmt.Sprintf("databases/mysql/instances/%d/credentials", databaseID)
 	req := c.R(ctx).SetResult(&MySQLDatabaseCredential{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -265,7 +265,7 @@ func (c *Client) GetMySQLDatabaseCredentials(ctx context.Context, databaseID int
 // ResetMySQLDatabaseCredentials returns the Root Credentials for the given MySQL Database (may take a few seconds to work)
 func (c *Client) ResetMySQLDatabaseCredentials(ctx context.Context, databaseID int) error {
 	e := fmt.Sprintf("databases/mysql/instances/%d/credentials/reset", databaseID)
-	_, err := coupleAPIErrors(c.R(ctx).Post(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Post(e))
 	return err
 }
 
@@ -273,7 +273,7 @@ func (c *Client) ResetMySQLDatabaseCredentials(ctx context.Context, databaseID i
 func (c *Client) GetMySQLDatabaseBackup(ctx context.Context, databaseID int, backupID int) (*MySQLDatabaseBackup, error) {
 	e := fmt.Sprintf("databases/mysql/instances/%d/backups/%d", databaseID, backupID)
 	req := c.R(ctx).SetResult(&MySQLDatabaseBackup{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -284,7 +284,7 @@ func (c *Client) GetMySQLDatabaseBackup(ctx context.Context, databaseID int, bac
 // RestoreMySQLDatabaseBackup returns the given MySQL Database with the given Backup
 func (c *Client) RestoreMySQLDatabaseBackup(ctx context.Context, databaseID int, backupID int) error {
 	e := fmt.Sprintf("databases/mysql/instances/%d/backups/%d/restore", databaseID, backupID)
-	_, err := coupleAPIErrors(c.R(ctx).Post(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Post(e))
 	return err
 }
 
@@ -296,13 +296,13 @@ func (c *Client) CreateMySQLDatabaseBackup(ctx context.Context, databaseID int, 
 	}
 
 	e := fmt.Sprintf("databases/mysql/instances/%d/backups", databaseID)
-	_, err = coupleAPIErrors(c.R(ctx).SetBody(string(body)).Post(e))
+	_, err = CoupleAPIErrors(c.R(ctx).SetBody(string(body)).Post(e))
 	return err
 }
 
 // PatchMySQLDatabase applies security patches and updates to the underlying operating system of the Managed MySQL Database
 func (c *Client) PatchMySQLDatabase(ctx context.Context, databaseID int) error {
 	e := fmt.Sprintf("databases/mysql/instances/%d/patch", databaseID)
-	_, err := coupleAPIErrors(c.R(ctx).Post(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Post(e))
 	return err
 }

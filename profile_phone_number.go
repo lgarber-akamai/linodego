@@ -24,14 +24,14 @@ func (c *Client) SendPhoneNumberVerificationCode(ctx context.Context, opts SendP
 	}
 
 	e := "profile/phone-number"
-	_, err = coupleAPIErrors(c.R(ctx).SetBody(string(body)).Post(e))
+	_, err = CoupleAPIErrors(c.R(ctx).SetBody(string(body)).Post(e))
 	return err
 }
 
 // DeletePhoneNumber deletes the verified phone number for the User making this request.
 func (c *Client) DeletePhoneNumber(ctx context.Context) error {
 	e := "profile/phone-number"
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }
 
@@ -43,6 +43,6 @@ func (c *Client) VerifyPhoneNumber(ctx context.Context, opts VerifyPhoneNumberOp
 	}
 
 	e := "profile/phone-number/verify"
-	_, err = coupleAPIErrors(c.R(ctx).SetBody(string(body)).Post(e))
+	_, err = CoupleAPIErrors(c.R(ctx).SetBody(string(body)).Post(e))
 	return err
 }

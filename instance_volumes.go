@@ -20,7 +20,7 @@ func (InstanceVolumesPagedResponse) endpoint(ids ...any) string {
 }
 
 func (resp *InstanceVolumesPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(InstanceVolumesPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(InstanceVolumesPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}

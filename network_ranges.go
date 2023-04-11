@@ -27,7 +27,7 @@ func (IPv6RangesPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *IPv6RangesPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(IPv6RangesPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(IPv6RangesPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -50,7 +50,7 @@ func (c *Client) ListIPv6Ranges(ctx context.Context, opts *ListOptions) ([]IPv6R
 func (c *Client) GetIPv6Range(ctx context.Context, ipRange string) (*IPv6Range, error) {
 	e := fmt.Sprintf("networking/ipv6/ranges/%s", ipRange)
 	req := c.R(ctx).SetResult(&IPv6Range{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -66,7 +66,7 @@ func (c *Client) CreateIPv6Range(ctx context.Context, opts IPv6RangeCreateOption
 
 	e := "networking/ipv6/ranges"
 	req := c.R(ctx).SetResult(&IPv6Range{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -76,6 +76,6 @@ func (c *Client) CreateIPv6Range(ctx context.Context, opts IPv6RangeCreateOption
 // DeleteIPv6Range deletes an IPv6 Range.
 func (c *Client) DeleteIPv6Range(ctx context.Context, ipRange string) error {
 	e := fmt.Sprintf("networking/ipv6/ranges/%s", ipRange)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }

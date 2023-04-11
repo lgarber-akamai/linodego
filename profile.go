@@ -72,7 +72,7 @@ func (i Profile) GetUpdateOptions() (o ProfileUpdateOptions) {
 func (c *Client) GetProfile(ctx context.Context) (*Profile, error) {
 	e := "profile"
 	req := c.R(ctx).SetResult(&Profile{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -88,7 +88,7 @@ func (c *Client) UpdateProfile(ctx context.Context, opts ProfileUpdateOptions) (
 
 	e := "profile"
 	req := c.R(ctx).SetResult(&Profile{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}

@@ -114,7 +114,7 @@ func (*NodeBalancersPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *NodeBalancersPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(NodeBalancersPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(NodeBalancersPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -137,7 +137,7 @@ func (c *Client) ListNodeBalancers(ctx context.Context, opts *ListOptions) ([]No
 func (c *Client) GetNodeBalancer(ctx context.Context, nodebalancerID int) (*NodeBalancer, error) {
 	e := fmt.Sprintf("nodebalancers/%d", nodebalancerID)
 	req := c.R(ctx).SetResult(&NodeBalancer{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -153,7 +153,7 @@ func (c *Client) CreateNodeBalancer(ctx context.Context, opts NodeBalancerCreate
 
 	e := "nodebalancers"
 	req := c.R(ctx).SetResult(&NodeBalancer{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -169,7 +169,7 @@ func (c *Client) UpdateNodeBalancer(ctx context.Context, nodebalancerID int, opt
 
 	e := fmt.Sprintf("nodebalancers/%d", nodebalancerID)
 	req := c.R(ctx).SetResult(&NodeBalancer{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}
@@ -179,6 +179,6 @@ func (c *Client) UpdateNodeBalancer(ctx context.Context, nodebalancerID int, opt
 // DeleteNodeBalancer deletes the NodeBalancer with the specified id
 func (c *Client) DeleteNodeBalancer(ctx context.Context, nodebalancerID int) error {
 	e := fmt.Sprintf("nodebalancers/%d", nodebalancerID)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }

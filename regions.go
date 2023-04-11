@@ -40,7 +40,7 @@ func (RegionsPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *RegionsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(RegionsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(RegionsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -82,7 +82,7 @@ func (c *Client) GetRegion(ctx context.Context, regionID string) (*Region, error
 	}
 
 	req := c.R(ctx).SetResult(&Region{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}

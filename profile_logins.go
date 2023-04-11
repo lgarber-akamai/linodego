@@ -30,7 +30,7 @@ func (ProfileLoginsPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *ProfileLoginsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(ProfileLoginsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(ProfileLoginsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -64,7 +64,7 @@ func (c *Client) GetProfileLogin(ctx context.Context, id int) (*ProfileLogin, er
 	e := fmt.Sprintf("profile/logins/%d", id)
 
 	req := c.R(ctx).SetResult(&ProfileLogin{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}

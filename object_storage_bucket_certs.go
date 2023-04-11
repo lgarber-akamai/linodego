@@ -24,7 +24,7 @@ func (c *Client) UploadObjectStorageBucketCert(ctx context.Context, clusterID, b
 
 	e := fmt.Sprintf("object-storage/buckets/%s/%s/ssl", clusterID, bucket)
 	req := c.R(ctx).SetResult(&ObjectStorageBucketCert{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -35,7 +35,7 @@ func (c *Client) UploadObjectStorageBucketCert(ctx context.Context, clusterID, b
 func (c *Client) GetObjectStorageBucketCert(ctx context.Context, clusterID, bucket string) (*ObjectStorageBucketCert, error) {
 	e := fmt.Sprintf("object-storage/buckets/%s/%s/ssl", clusterID, bucket)
 	req := c.R(ctx).SetResult(&ObjectStorageBucketCert{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -45,6 +45,6 @@ func (c *Client) GetObjectStorageBucketCert(ctx context.Context, clusterID, buck
 // DeleteObjectStorageBucketCert deletes an ObjectStorageBucketCert
 func (c *Client) DeleteObjectStorageBucketCert(ctx context.Context, clusterID, bucket string) error {
 	e := fmt.Sprintf("object-storage/buckets/%s/%s/ssl", clusterID, bucket)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }

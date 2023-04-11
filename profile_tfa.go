@@ -47,7 +47,7 @@ func (s *TwoFactorSecret) UnmarshalJSON(b []byte) error {
 func (c *Client) CreateTwoFactorSecret(ctx context.Context) (*TwoFactorSecret, error) {
 	e := "profile/tfa-enable"
 	req := c.R(ctx).SetResult(&TwoFactorSecret{})
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -58,7 +58,7 @@ func (c *Client) CreateTwoFactorSecret(ctx context.Context) (*TwoFactorSecret, e
 // DisableTwoFactor disables Two Factor Authentication for your User.
 func (c *Client) DisableTwoFactor(ctx context.Context) error {
 	e := "profile/tfa-disable"
-	_, err := coupleAPIErrors(c.R(ctx).Post(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Post(e))
 	return err
 }
 
@@ -71,7 +71,7 @@ func (c *Client) ConfirmTwoFactor(ctx context.Context, opts ConfirmTwoFactorOpti
 
 	e := "profile/tfa-enable-confirm"
 	req := c.R(ctx).SetResult(&ConfirmTwoFactorResponse{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}

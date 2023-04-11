@@ -29,7 +29,7 @@ func (LoginsPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *LoginsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(LoginsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(LoginsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -71,7 +71,7 @@ func (i *Login) UnmarshalJSON(b []byte) error {
 func (c *Client) GetLogin(ctx context.Context, loginID int) (*Login, error) {
 	req := c.R(ctx).SetResult(&Login{})
 	e := fmt.Sprintf("account/logins/%d", loginID)
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}

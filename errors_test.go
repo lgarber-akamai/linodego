@@ -48,7 +48,7 @@ func TestCoupleAPIErrors_genericHtmlError(t *testing.T) {
 		Message: "Unexpected Content-Type: Expected: application/json, Received: text/html\nResponse body: " + rawResponse,
 	}
 
-	_, err := coupleAPIErrors(client.R(context.Background()).SetResult(&Instance{}).Get(ts.URL + route))
+	_, err := CoupleAPIErrors(client.R(context.Background()).SetResult(&Instance{}).Get(ts.URL + route))
 	if diff := cmp.Diff(expectedError, err); diff != "" {
 		t.Errorf("expected error to match but got diff:\n%s", diff)
 	}
@@ -82,7 +82,7 @@ func TestCoupleAPIErrors_badGatewayError(t *testing.T) {
 		Message: http.StatusText(http.StatusBadGateway),
 	}
 
-	if _, err := coupleAPIErrors(resp, nil); !cmp.Equal(err, expectedError) {
+	if _, err := CoupleAPIErrors(resp, nil); !cmp.Equal(err, expectedError) {
 		t.Errorf("expected error %#v to match error %#v", err, expectedError)
 	}
 }

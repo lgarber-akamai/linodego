@@ -123,7 +123,7 @@ func (StackscriptsPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *StackscriptsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(StackscriptsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(StackscriptsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -146,7 +146,7 @@ func (c *Client) ListStackscripts(ctx context.Context, opts *ListOptions) ([]Sta
 func (c *Client) GetStackscript(ctx context.Context, scriptID int) (*Stackscript, error) {
 	e := fmt.Sprintf("linode/stackscripts/%d", scriptID)
 	req := c.R(ctx).SetResult(&Stackscript{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -162,7 +162,7 @@ func (c *Client) CreateStackscript(ctx context.Context, opts StackscriptCreateOp
 
 	e := "linode/stackscripts"
 	req := c.R(ctx).SetResult(&Stackscript{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -178,7 +178,7 @@ func (c *Client) UpdateStackscript(ctx context.Context, scriptID int, opts Stack
 
 	req := c.R(ctx).SetResult(&Stackscript{}).SetBody(string(body))
 	e := fmt.Sprintf("linode/stackscripts/%d", scriptID)
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}
@@ -188,6 +188,6 @@ func (c *Client) UpdateStackscript(ctx context.Context, scriptID int, opts Stack
 // DeleteStackscript deletes the StackScript with the specified id
 func (c *Client) DeleteStackscript(ctx context.Context, scriptID int) error {
 	e := fmt.Sprintf("linode/stackscripts/%d", scriptID)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }

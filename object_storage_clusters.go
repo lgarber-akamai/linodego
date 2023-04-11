@@ -28,7 +28,7 @@ func (ObjectStorageClustersPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *ObjectStorageClustersPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(ObjectStorageClustersPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(ObjectStorageClustersPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -51,7 +51,7 @@ func (c *Client) ListObjectStorageClusters(ctx context.Context, opts *ListOption
 func (c *Client) GetObjectStorageCluster(ctx context.Context, clusterID string) (*ObjectStorageCluster, error) {
 	e := fmt.Sprintf("object-storage/clusters/%s", clusterID)
 	req := c.R(ctx).SetResult(&ObjectStorageCluster{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}

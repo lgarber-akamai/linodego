@@ -98,7 +98,7 @@ func (TokensPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *TokensPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(TokensPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(TokensPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -121,7 +121,7 @@ func (c *Client) ListTokens(ctx context.Context, opts *ListOptions) ([]Token, er
 func (c *Client) GetToken(ctx context.Context, tokenID int) (*Token, error) {
 	e := fmt.Sprintf("profile/tokens/%d", tokenID)
 	req := c.R(ctx).SetResult(&Token{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -150,7 +150,7 @@ func (c *Client) CreateToken(ctx context.Context, opts TokenCreateOptions) (*Tok
 
 	e := "profile/tokens"
 	req := c.R(ctx).SetResult(&Token{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -166,7 +166,7 @@ func (c *Client) UpdateToken(ctx context.Context, tokenID int, opts TokenUpdateO
 
 	e := fmt.Sprintf("profile/tokens/%d", tokenID)
 	req := c.R(ctx).SetResult(&Token{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}
@@ -176,6 +176,6 @@ func (c *Client) UpdateToken(ctx context.Context, tokenID int, opts TokenUpdateO
 // DeleteToken deletes the Token with the specified id
 func (c *Client) DeleteToken(ctx context.Context, tokenID int) error {
 	e := fmt.Sprintf("profile/tokens/%d", tokenID)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }

@@ -39,7 +39,7 @@ type AccountSettingsUpdateOptions struct {
 func (c *Client) GetAccountSettings(ctx context.Context) (*AccountSettings, error) {
 	req := c.R(ctx).SetResult(&AccountSettings{})
 	e := "account/settings"
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -56,7 +56,7 @@ func (c *Client) UpdateAccountSettings(ctx context.Context, opts AccountSettings
 
 	req := c.R(ctx).SetResult(&AccountSettings{}).SetBody(string(body))
 	e := "account/settings"
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}

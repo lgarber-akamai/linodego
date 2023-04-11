@@ -66,7 +66,7 @@ func (TagsPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *TagsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(TagsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(TagsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -88,7 +88,7 @@ func (TaggedObjectsPagedResponse) endpoint(ids ...any) string {
 }
 
 func (resp *TaggedObjectsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(TaggedObjectsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(TaggedObjectsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -212,7 +212,7 @@ func (c *Client) CreateTag(ctx context.Context, opts TagCreateOptions) (*Tag, er
 
 	e := "tags"
 	req := c.R(ctx).SetResult(&Tag{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -223,6 +223,6 @@ func (c *Client) CreateTag(ctx context.Context, opts TagCreateOptions) (*Tag, er
 func (c *Client) DeleteTag(ctx context.Context, label string) error {
 	label = url.PathEscape(label)
 	e := fmt.Sprintf("tags/%s", label)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }

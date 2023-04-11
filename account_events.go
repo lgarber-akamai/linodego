@@ -222,7 +222,7 @@ func (i *Event) UnmarshalJSON(b []byte) error {
 }
 
 func (resp *EventsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(EventsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(EventsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -248,7 +248,7 @@ func (c *Client) ListEvents(ctx context.Context, opts *ListOptions) ([]Event, er
 func (c *Client) GetEvent(ctx context.Context, eventID int) (*Event, error) {
 	req := c.R(ctx).SetResult(&Event{})
 	e := fmt.Sprintf("account/events/%d", eventID)
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -259,13 +259,13 @@ func (c *Client) GetEvent(ctx context.Context, eventID int) (*Event, error) {
 // MarkEventRead marks a single Event as read.
 func (c *Client) MarkEventRead(ctx context.Context, event *Event) error {
 	e := fmt.Sprintf("account/events/%d/read", event.ID)
-	_, err := coupleAPIErrors(c.R(ctx).Post(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Post(e))
 	return err
 }
 
 // MarkEventsSeen marks all Events up to and including this Event by ID as seen.
 func (c *Client) MarkEventsSeen(ctx context.Context, event *Event) error {
 	e := fmt.Sprintf("account/events/%d/seen", event.ID)
-	_, err := coupleAPIErrors(c.R(ctx).Post(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Post(e))
 	return err
 }

@@ -119,7 +119,7 @@ func (PostgresDatabasesPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *PostgresDatabasesPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(PostgresDatabasesPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(PostgresDatabasesPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -183,7 +183,7 @@ func (PostgresDatabaseBackupsPagedResponse) endpoint(ids ...any) string {
 }
 
 func (resp *PostgresDatabaseBackupsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(PostgresDatabaseBackupsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(PostgresDatabaseBackupsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -208,7 +208,7 @@ func (c *Client) ListPostgresDatabaseBackups(ctx context.Context, databaseID int
 func (c *Client) GetPostgresDatabase(ctx context.Context, databaseID int) (*PostgresDatabase, error) {
 	e := fmt.Sprintf("databases/postgresql/instances/%d", databaseID)
 	req := c.R(ctx).SetResult(&PostgresDatabase{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -225,7 +225,7 @@ func (c *Client) CreatePostgresDatabase(ctx context.Context, opts PostgresCreate
 
 	e := "databases/postgresql/instances"
 	req := c.R(ctx).SetResult(&PostgresDatabase{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -235,7 +235,7 @@ func (c *Client) CreatePostgresDatabase(ctx context.Context, opts PostgresCreate
 // DeletePostgresDatabase deletes an existing Postgres Database with the given id
 func (c *Client) DeletePostgresDatabase(ctx context.Context, databaseID int) error {
 	e := fmt.Sprintf("databases/postgresql/instances/%d", databaseID)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }
 
@@ -248,7 +248,7 @@ func (c *Client) UpdatePostgresDatabase(ctx context.Context, databaseID int, opt
 
 	e := fmt.Sprintf("databases/postgresql/instances/%d", databaseID)
 	req := c.R(ctx).SetResult(&PostgresDatabase{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}
@@ -259,7 +259,7 @@ func (c *Client) UpdatePostgresDatabase(ctx context.Context, databaseID int, opt
 // PatchPostgresDatabase applies security patches and updates to the underlying operating system of the Managed Postgres Database
 func (c *Client) PatchPostgresDatabase(ctx context.Context, databaseID int) error {
 	e := fmt.Sprintf("databases/postgresql/instances/%d/patch", databaseID)
-	_, err := coupleAPIErrors(c.R(ctx).Post(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Post(e))
 	return err
 }
 
@@ -267,7 +267,7 @@ func (c *Client) PatchPostgresDatabase(ctx context.Context, databaseID int) erro
 func (c *Client) GetPostgresDatabaseCredentials(ctx context.Context, databaseID int) (*PostgresDatabaseCredential, error) {
 	e := fmt.Sprintf("databases/postgresql/instances/%d/credentials", databaseID)
 	req := c.R(ctx).SetResult(&PostgresDatabaseCredential{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -278,7 +278,7 @@ func (c *Client) GetPostgresDatabaseCredentials(ctx context.Context, databaseID 
 // ResetPostgresDatabaseCredentials returns the Root Credentials for the given Postgres Database (may take a few seconds to work)
 func (c *Client) ResetPostgresDatabaseCredentials(ctx context.Context, databaseID int) error {
 	e := fmt.Sprintf("databases/postgresql/instances/%d/credentials/reset", databaseID)
-	_, err := coupleAPIErrors(c.R(ctx).Post(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Post(e))
 	return err
 }
 
@@ -286,7 +286,7 @@ func (c *Client) ResetPostgresDatabaseCredentials(ctx context.Context, databaseI
 func (c *Client) GetPostgresDatabaseSSL(ctx context.Context, databaseID int) (*PostgresDatabaseSSL, error) {
 	e := fmt.Sprintf("databases/postgresql/instances/%d/ssl", databaseID)
 	req := c.R(ctx).SetResult(&PostgresDatabaseSSL{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -298,7 +298,7 @@ func (c *Client) GetPostgresDatabaseSSL(ctx context.Context, databaseID int) (*P
 func (c *Client) GetPostgresDatabaseBackup(ctx context.Context, databaseID int, backupID int) (*PostgresDatabaseBackup, error) {
 	e := fmt.Sprintf("databases/postgresql/instances/%d/backups/%d", databaseID, backupID)
 	req := c.R(ctx).SetResult(&PostgresDatabaseBackup{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -309,7 +309,7 @@ func (c *Client) GetPostgresDatabaseBackup(ctx context.Context, databaseID int, 
 // RestorePostgresDatabaseBackup returns the given Postgres Database with the given Backup
 func (c *Client) RestorePostgresDatabaseBackup(ctx context.Context, databaseID int, backupID int) error {
 	e := fmt.Sprintf("databases/postgresql/instances/%d/backups/%d/restore", databaseID, backupID)
-	_, err := coupleAPIErrors(c.R(ctx).Post(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Post(e))
 	return err
 }
 
@@ -321,6 +321,6 @@ func (c *Client) CreatePostgresDatabaseBackup(ctx context.Context, databaseID in
 	}
 
 	e := fmt.Sprintf("databases/postgresql/instances/%d/backups", databaseID)
-	_, err = coupleAPIErrors(c.R(ctx).SetBody(string(body)).Post(e))
+	_, err = CoupleAPIErrors(c.R(ctx).SetBody(string(body)).Post(e))
 	return err
 }

@@ -69,7 +69,7 @@ func (PaymentsPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *PaymentsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(PaymentsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(PaymentsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -93,7 +93,7 @@ func (c *Client) ListPayments(ctx context.Context, opts *ListOptions) ([]Payment
 func (c *Client) GetPayment(ctx context.Context, paymentID int) (*Payment, error) {
 	req := c.R(ctx).SetResult(&Payment{})
 	e := fmt.Sprintf("account/payments/%d", paymentID)
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -110,7 +110,7 @@ func (c *Client) CreatePayment(ctx context.Context, opts PaymentCreateOptions) (
 
 	req := c.R(ctx).SetResult(&Payment{}).SetBody(string(body))
 	e := "accounts/payments"
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}

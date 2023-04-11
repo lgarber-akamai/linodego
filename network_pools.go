@@ -19,7 +19,7 @@ func (IPv6PoolsPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *IPv6PoolsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(IPv6PoolsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(IPv6PoolsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -42,7 +42,7 @@ func (c *Client) ListIPv6Pools(ctx context.Context, opts *ListOptions) ([]IPv6Ra
 func (c *Client) GetIPv6Pool(ctx context.Context, id string) (*IPv6Range, error) {
 	e := fmt.Sprintf("networking/ipv6/pools/%s", id)
 	req := c.R(ctx).SetResult(&IPv6Range{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}

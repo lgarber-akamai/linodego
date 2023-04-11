@@ -32,7 +32,7 @@ type CreditCard struct {
 func (c *Client) GetAccount(ctx context.Context) (*Account, error) {
 	e := "account"
 	req := c.R(ctx).SetResult(&Account{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}

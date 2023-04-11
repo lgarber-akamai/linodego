@@ -2,6 +2,7 @@ package metadata
 
 import (
 	"context"
+	"github.com/linode/linodego"
 	"math"
 	"strconv"
 	"time"
@@ -34,7 +35,7 @@ func (c *Client) GenerateToken(ctx context.Context, opts GenerateTokenOptions) (
 
 	req.SetHeader("X-Metadata-Token-Expiry-Seconds", strconv.Itoa(tokenExpirySeconds))
 
-	resp, err := req.Put("token")
+	resp, err := linodego.CoupleAPIErrors(req.Put("token"))
 	if err != nil {
 		return nil, err
 	}

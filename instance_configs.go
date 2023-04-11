@@ -175,7 +175,7 @@ func (InstanceConfigsPagedResponse) endpoint(ids ...any) string {
 }
 
 func (resp *InstanceConfigsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(InstanceConfigsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(InstanceConfigsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -198,7 +198,7 @@ func (c *Client) ListInstanceConfigs(ctx context.Context, linodeID int, opts *Li
 func (c *Client) GetInstanceConfig(ctx context.Context, linodeID int, configID int) (*InstanceConfig, error) {
 	e := fmt.Sprintf("linode/instances/%d/configs/%d", linodeID, configID)
 	req := c.R(ctx).SetResult(&InstanceConfig{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -214,7 +214,7 @@ func (c *Client) CreateInstanceConfig(ctx context.Context, linodeID int, opts In
 
 	e := fmt.Sprintf("linode/instances/%d/configs", linodeID)
 	req := c.R(ctx).SetResult(&InstanceConfig{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -231,7 +231,7 @@ func (c *Client) UpdateInstanceConfig(ctx context.Context, linodeID int, configI
 
 	e := fmt.Sprintf("linode/instances/%d/configs/%d", linodeID, configID)
 	req := c.R(ctx).SetResult(&InstanceConfig{}).SetBody(body)
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}
@@ -247,6 +247,6 @@ func (c *Client) RenameInstanceConfig(ctx context.Context, linodeID int, configI
 // DeleteInstanceConfig deletes a Linode InstanceConfig
 func (c *Client) DeleteInstanceConfig(ctx context.Context, linodeID int, configID int) error {
 	e := fmt.Sprintf("linode/instances/%d/configs/%d", linodeID, configID)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }

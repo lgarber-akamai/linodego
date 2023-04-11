@@ -197,7 +197,7 @@ func (InstancesPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *InstancesPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(InstancesPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(InstancesPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -220,7 +220,7 @@ func (c *Client) ListInstances(ctx context.Context, opts *ListOptions) ([]Instan
 func (c *Client) GetInstance(ctx context.Context, linodeID int) (*Instance, error) {
 	e := fmt.Sprintf("linode/instances/%d", linodeID)
 	req := c.R(ctx).SetResult(Instance{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -231,7 +231,7 @@ func (c *Client) GetInstance(ctx context.Context, linodeID int) (*Instance, erro
 func (c *Client) GetInstanceTransfer(ctx context.Context, linodeID int) (*InstanceTransfer, error) {
 	e := fmt.Sprintf("linode/instances/%d/transfer", linodeID)
 	req := c.R(ctx).SetResult(InstanceTransfer{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -247,7 +247,7 @@ func (c *Client) CreateInstance(ctx context.Context, opts InstanceCreateOptions)
 
 	e := "linode/instances"
 	req := c.R(ctx).SetResult(&Instance{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -263,7 +263,7 @@ func (c *Client) UpdateInstance(ctx context.Context, linodeID int, opts Instance
 
 	e := fmt.Sprintf("linode/instances/%d", linodeID)
 	req := c.R(ctx).SetResult(&Instance{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}
@@ -278,7 +278,7 @@ func (c *Client) RenameInstance(ctx context.Context, linodeID int, label string)
 // DeleteInstance deletes a Linode instance
 func (c *Client) DeleteInstance(ctx context.Context, linodeID int) error {
 	e := fmt.Sprintf("linode/instances/%d", linodeID)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }
 
@@ -295,7 +295,7 @@ func (c *Client) BootInstance(ctx context.Context, linodeID int, configID int) e
 		body = string(bodyJSON)
 	}
 	e := fmt.Sprintf("linode/instances/%d/boot", linodeID)
-	_, err := coupleAPIErrors(c.R(ctx).SetBody(body).Post(e))
+	_, err := CoupleAPIErrors(c.R(ctx).SetBody(body).Post(e))
 	return err
 }
 
@@ -308,7 +308,7 @@ func (c *Client) CloneInstance(ctx context.Context, linodeID int, opts InstanceC
 
 	req := c.R(ctx).SetResult(&Instance{}).SetBody(string(body))
 	e := fmt.Sprintf("linode/instances/%d/clone", linodeID)
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -330,7 +330,7 @@ func (c *Client) RebootInstance(ctx context.Context, linodeID int, configID int)
 		body = string(bodyJSON)
 	}
 	e := fmt.Sprintf("linode/instances/%d/reboot", linodeID)
-	_, err := coupleAPIErrors(c.R(ctx).SetBody(body).Post(e))
+	_, err := CoupleAPIErrors(c.R(ctx).SetBody(body).Post(e))
 	return err
 }
 
@@ -354,7 +354,7 @@ func (c *Client) RebuildInstance(ctx context.Context, linodeID int, opts Instanc
 	}
 	e := fmt.Sprintf("linode/instances/%d/rebuild", linodeID)
 	req := c.R(ctx).SetBody(string(body)).SetResult(&Instance{})
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -376,7 +376,7 @@ func (c *Client) RescueInstance(ctx context.Context, linodeID int, opts Instance
 		return err
 	}
 	e := fmt.Sprintf("linode/instances/%d/rescue", linodeID)
-	_, err = coupleAPIErrors(c.R(ctx).SetBody(string(body)).Post(e))
+	_, err = CoupleAPIErrors(c.R(ctx).SetBody(string(body)).Post(e))
 	return err
 }
 
@@ -387,7 +387,7 @@ func (c *Client) ResizeInstance(ctx context.Context, linodeID int, opts Instance
 		return err
 	}
 	e := fmt.Sprintf("linode/instances/%d/resize", linodeID)
-	_, err = coupleAPIErrors(c.R(ctx).SetBody(string(body)).Post(e))
+	_, err = CoupleAPIErrors(c.R(ctx).SetBody(string(body)).Post(e))
 	return err
 }
 
@@ -410,6 +410,6 @@ func (c *Client) MigrateInstance(ctx context.Context, id int) error {
 // and return empty responses `{}` unless they return a standard error
 func (c *Client) simpleInstanceAction(ctx context.Context, action string, linodeID int) error {
 	e := fmt.Sprintf("linode/instances/%d/%s", linodeID, action)
-	_, err := coupleAPIErrors(c.R(ctx).Post(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Post(e))
 	return err
 }

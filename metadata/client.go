@@ -148,7 +148,8 @@ func (c *Client) R(ctx context.Context) *resty.Request {
 	return c.resty.R().
 		ExpectContentType("application/json").
 		SetHeader("Content-Type", "application/json").
-		SetContext(ctx)
+		SetContext(ctx).
+		SetError(linodego.APIError{})
 }
 
 func (c *Client) SetUserAgent(userAgent string) *Client {

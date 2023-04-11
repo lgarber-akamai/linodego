@@ -41,7 +41,7 @@ func (InvoicesPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *InvoicesPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(InvoicesPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(InvoicesPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -107,7 +107,7 @@ func (i *InvoiceItem) UnmarshalJSON(b []byte) error {
 func (c *Client) GetInvoice(ctx context.Context, invoiceID int) (*Invoice, error) {
 	req := c.R(ctx).SetResult(&Invoice{})
 	e := fmt.Sprintf("account/invoices/%d", invoiceID)
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -128,7 +128,7 @@ func (InvoiceItemsPagedResponse) endpoint(ids ...any) string {
 }
 
 func (resp *InvoiceItemsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(InvoiceItemsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(InvoiceItemsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}

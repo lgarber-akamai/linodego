@@ -70,7 +70,7 @@ type UserGrantsUpdateOptions struct {
 func (c *Client) GetUserGrants(ctx context.Context, username string) (*UserGrants, error) {
 	e := fmt.Sprintf("account/users/%s/grants", username)
 	req := c.R(ctx).SetResult(&UserGrants{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -86,7 +86,7 @@ func (c *Client) UpdateUserGrants(ctx context.Context, username string, opts Use
 
 	e := fmt.Sprintf("account/users/%s/grants", username)
 	req := c.R(ctx).SetResult(&UserGrants{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}

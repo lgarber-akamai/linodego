@@ -90,7 +90,7 @@ func (i *InstanceSnapshot) UnmarshalJSON(b []byte) error {
 func (c *Client) GetInstanceSnapshot(ctx context.Context, linodeID int, snapshotID int) (*InstanceSnapshot, error) {
 	e := fmt.Sprintf("linode/instances/%d/backups/%d", linodeID, snapshotID)
 	req := c.R(ctx).SetResult(&InstanceSnapshot{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -105,7 +105,7 @@ func (c *Client) CreateInstanceSnapshot(ctx context.Context, linodeID int, label
 	}
 	e := fmt.Sprintf("linode/instances/%d/backups", linodeID)
 	req := c.R(ctx).SetResult(&InstanceSnapshot{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -118,7 +118,7 @@ func (c *Client) CreateInstanceSnapshot(ctx context.Context, linodeID int, label
 func (c *Client) GetInstanceBackups(ctx context.Context, linodeID int) (*InstanceBackupsResponse, error) {
 	e := fmt.Sprintf("linode/instances/%d/backups", linodeID)
 	req := c.R(ctx).SetResult(&InstanceBackupsResponse{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -128,14 +128,14 @@ func (c *Client) GetInstanceBackups(ctx context.Context, linodeID int) (*Instanc
 // EnableInstanceBackups Enables backups for the specified Linode.
 func (c *Client) EnableInstanceBackups(ctx context.Context, linodeID int) error {
 	e := fmt.Sprintf("linode/instances/%d/backups/enable", linodeID)
-	_, err := coupleAPIErrors(c.R(ctx).Post(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Post(e))
 	return err
 }
 
 // CancelInstanceBackups Cancels backups for the specified Linode.
 func (c *Client) CancelInstanceBackups(ctx context.Context, linodeID int) error {
 	e := fmt.Sprintf("linode/instances/%d/backups/cancel", linodeID)
-	_, err := coupleAPIErrors(c.R(ctx).Post(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Post(e))
 	return err
 }
 
@@ -146,6 +146,6 @@ func (c *Client) RestoreInstanceBackup(ctx context.Context, linodeID int, backup
 		return NewError(err)
 	}
 	e := fmt.Sprintf("linode/instances/%d/backups/%d/restore", linodeID, backupID)
-	_, err = coupleAPIErrors(c.R(ctx).SetBody(string(body)).Post(e))
+	_, err = CoupleAPIErrors(c.R(ctx).SetBody(string(body)).Post(e))
 	return err
 }

@@ -63,7 +63,7 @@ func (DatabasesPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *DatabasesPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(DatabasesPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(DatabasesPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -82,7 +82,7 @@ func (DatabaseEnginesPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *DatabaseEnginesPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(DatabaseEnginesPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(DatabaseEnginesPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -101,7 +101,7 @@ func (DatabaseTypesPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *DatabaseTypesPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(DatabaseTypesPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(DatabaseTypesPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -245,7 +245,7 @@ func (c *Client) GetDatabaseEngine(ctx context.Context, opts *ListOptions, engin
 	}
 
 	req := c.R(ctx).SetResult(&DatabaseEngine{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -288,7 +288,7 @@ func (c *Client) GetDatabaseType(ctx context.Context, opts *ListOptions, typeID 
 	}
 
 	req := c.R(ctx).SetResult(&DatabaseType{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}

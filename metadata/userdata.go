@@ -1,6 +1,9 @@
 package metadata
 
-import "context"
+import (
+	"context"
+	"github.com/linode/linodego"
+)
 
 func (c *Client) GetUserData(ctx context.Context) (string, error) {
 	// Getting user-data requires the text/plain content type
@@ -8,7 +11,7 @@ func (c *Client) GetUserData(ctx context.Context) (string, error) {
 		ExpectContentType("text/plain").
 		SetHeader("Content-Type", "text/plain")
 
-	resp, err := req.Get("user-data")
+	resp, err := linodego.CoupleAPIErrors(req.Get("user-data"))
 	if err != nil {
 		return "", err
 	}

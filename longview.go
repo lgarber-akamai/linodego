@@ -63,7 +63,7 @@ func (LongviewClientsPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *LongviewClientsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(LongviewClientsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(LongviewClientsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -101,7 +101,7 @@ func (c *Client) CreateLongviewClient(ctx context.Context, opts LongviewClientCr
 
 	e := "longview/clients"
 	req := c.R(ctx).SetResult(&LongviewClient{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -111,7 +111,7 @@ func (c *Client) CreateLongviewClient(ctx context.Context, opts LongviewClientCr
 // DeleteLongviewClient deletes a Longview Client
 func (c *Client) DeleteLongviewClient(ctx context.Context, clientID int) error {
 	e := fmt.Sprintf("longview/clients/%d", clientID)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }
 
@@ -124,7 +124,7 @@ func (c *Client) UpdateLongviewClient(ctx context.Context, clientID int, opts Lo
 
 	e := fmt.Sprintf("longview/clients/%d", clientID)
 	req := c.R(ctx).SetResult(&LongviewClient{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}
@@ -150,7 +150,7 @@ func (c *Client) UpdateLongviewPlan(ctx context.Context, opts LongviewPlanUpdate
 
 	e := "longview/plan"
 	req := c.R(ctx).SetResult(&LongviewPlan{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}

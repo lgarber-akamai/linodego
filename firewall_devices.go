@@ -75,7 +75,7 @@ func (FirewallDevicesPagedResponse) endpoint(ids ...any) string {
 }
 
 func (resp *FirewallDevicesPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(FirewallDevicesPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(FirewallDevicesPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -98,7 +98,7 @@ func (c *Client) ListFirewallDevices(ctx context.Context, firewallID int, opts *
 func (c *Client) GetFirewallDevice(ctx context.Context, firewallID, deviceID int) (*FirewallDevice, error) {
 	e := fmt.Sprintf("networking/firewalls/%d/devices/%d", firewallID, deviceID)
 	req := c.R(ctx).SetResult(&FirewallDevice{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -114,7 +114,7 @@ func (c *Client) CreateFirewallDevice(ctx context.Context, firewallID int, opts 
 
 	e := fmt.Sprintf("networking/firewalls/%d/devices", firewallID)
 	req := c.R(ctx).SetResult(&FirewallDevice{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -124,6 +124,6 @@ func (c *Client) CreateFirewallDevice(ctx context.Context, firewallID int, opts 
 // DeleteFirewallDevice disassociates a Device with a given Firewall
 func (c *Client) DeleteFirewallDevice(ctx context.Context, firewallID, deviceID int) error {
 	e := fmt.Sprintf("networking/firewalls/%d/devices/%d", firewallID, deviceID)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }

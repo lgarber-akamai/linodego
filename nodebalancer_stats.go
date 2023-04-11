@@ -27,7 +27,7 @@ type StatsTraffic struct {
 func (c *Client) GetNodeBalancerStats(ctx context.Context, nodebalancerID int) (*NodeBalancerStats, error) {
 	e := fmt.Sprintf("nodebalancers/%d/stats", nodebalancerID)
 	req := c.R(ctx).SetResult(&NodeBalancerStats{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}

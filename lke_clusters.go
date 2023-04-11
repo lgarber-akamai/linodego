@@ -135,7 +135,7 @@ func (LKEVersionsPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *LKEVersionsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(LKEVersionsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(LKEVersionsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -177,7 +177,7 @@ func (c *Client) GetLKEVersion(ctx context.Context, version string) (*LKEVersion
 	}
 
 	req := c.R(ctx).SetResult(&LKEVersion{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -200,7 +200,7 @@ func (LKEClusterAPIEndpointsPagedResponse) endpoint(ids ...any) string {
 }
 
 func (resp *LKEClusterAPIEndpointsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(LKEClusterAPIEndpointsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(LKEClusterAPIEndpointsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -231,7 +231,7 @@ func (LKEClustersPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *LKEClustersPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(LKEClustersPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(LKEClustersPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -254,7 +254,7 @@ func (c *Client) ListLKEClusters(ctx context.Context, opts *ListOptions) ([]LKEC
 func (c *Client) GetLKECluster(ctx context.Context, clusterID int) (*LKECluster, error) {
 	e := fmt.Sprintf("lke/clusters/%d", clusterID)
 	req := c.R(ctx).SetResult(&LKECluster{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -270,7 +270,7 @@ func (c *Client) CreateLKECluster(ctx context.Context, opts LKEClusterCreateOpti
 
 	e := "lke/clusters"
 	req := c.R(ctx).SetResult(&LKECluster{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -286,7 +286,7 @@ func (c *Client) UpdateLKECluster(ctx context.Context, clusterID int, opts LKECl
 
 	e := fmt.Sprintf("lke/clusters/%d", clusterID)
 	req := c.R(ctx).SetResult(&LKECluster{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}
@@ -296,7 +296,7 @@ func (c *Client) UpdateLKECluster(ctx context.Context, clusterID int, opts LKECl
 // DeleteLKECluster deletes the LKECluster with the specified id
 func (c *Client) DeleteLKECluster(ctx context.Context, clusterID int) error {
 	e := fmt.Sprintf("lke/clusters/%d", clusterID)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }
 
@@ -304,7 +304,7 @@ func (c *Client) DeleteLKECluster(ctx context.Context, clusterID int) error {
 func (c *Client) GetLKEClusterKubeconfig(ctx context.Context, clusterID int) (*LKEClusterKubeconfig, error) {
 	e := fmt.Sprintf("lke/clusters/%d/kubeconfig", clusterID)
 	req := c.R(ctx).SetResult(&LKEClusterKubeconfig{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -315,7 +315,7 @@ func (c *Client) GetLKEClusterKubeconfig(ctx context.Context, clusterID int) (*L
 func (c *Client) GetLKEClusterDashboard(ctx context.Context, clusterID int) (*LKEClusterDashboard, error) {
 	e := fmt.Sprintf("lke/clusters/%d/dashboard", clusterID)
 	req := c.R(ctx).SetResult(&LKEClusterDashboard{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -325,7 +325,7 @@ func (c *Client) GetLKEClusterDashboard(ctx context.Context, clusterID int) (*LK
 // RecycleLKEClusterNodes recycles all nodes in all pools of the specified LKE Cluster.
 func (c *Client) RecycleLKEClusterNodes(ctx context.Context, clusterID int) error {
 	e := fmt.Sprintf("lke/clusters/%d/recycle", clusterID)
-	_, err := coupleAPIErrors(c.R(ctx).Post(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Post(e))
 	return err
 }
 
@@ -338,7 +338,7 @@ func (c *Client) RegenerateLKECluster(ctx context.Context, clusterID int, opts L
 
 	e := fmt.Sprintf("lke/clusters/%d/regenerate", clusterID)
 	req := c.R(ctx).SetResult(&LKECluster{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -348,6 +348,6 @@ func (c *Client) RegenerateLKECluster(ctx context.Context, clusterID int, opts L
 // DeleteLKEClusterServiceToken deletes and regenerate the service account token for a Cluster.
 func (c *Client) DeleteLKEClusterServiceToken(ctx context.Context, clusterID int) error {
 	e := fmt.Sprintf("lke/clusters/%d/servicetoken", clusterID)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }

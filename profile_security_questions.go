@@ -28,7 +28,7 @@ type SecurityQuestionsAnswerOptions struct {
 func (c *Client) SecurityQuestionsList(ctx context.Context) (*SecurityQuestionsListResponse, error) {
 	e := "profile/security-questions"
 	req := c.R(ctx).SetResult(&SecurityQuestionsListResponse{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -44,6 +44,6 @@ func (c *Client) SecurityQuestionsAnswer(ctx context.Context, opts SecurityQuest
 
 	e := "profile/security-questions"
 	req := c.R(ctx).SetBody(string(body))
-	_, err = coupleAPIErrors(req.Post(e))
+	_, err = CoupleAPIErrors(req.Post(e))
 	return err
 }

@@ -45,7 +45,7 @@ type FirewallRuleSet struct {
 func (c *Client) GetFirewallRules(ctx context.Context, firewallID int) (*FirewallRuleSet, error) {
 	e := fmt.Sprintf("networking/firewalls/%d/rules", firewallID)
 	req := c.R(ctx).SetResult(&FirewallRuleSet{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -61,7 +61,7 @@ func (c *Client) UpdateFirewallRules(ctx context.Context, firewallID int, rules 
 
 	e := fmt.Sprintf("networking/firewalls/%d/rules", firewallID)
 	req := c.R(ctx).SetResult(&FirewallRuleSet{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}

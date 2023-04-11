@@ -96,7 +96,7 @@ func (OAuthClientsPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *OAuthClientsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(OAuthClientsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(OAuthClientsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -120,7 +120,7 @@ func (c *Client) ListOAuthClients(ctx context.Context, opts *ListOptions) ([]OAu
 func (c *Client) GetOAuthClient(ctx context.Context, clientID string) (*OAuthClient, error) {
 	req := c.R(ctx).SetResult(&OAuthClient{})
 	e := fmt.Sprintf("account/oauth-clients/%s", clientID)
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -137,7 +137,7 @@ func (c *Client) CreateOAuthClient(ctx context.Context, opts OAuthClientCreateOp
 
 	req := c.R(ctx).SetResult(&OAuthClient{}).SetBody(string(body))
 	e := "account/oauth-clients"
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -154,7 +154,7 @@ func (c *Client) UpdateOAuthClient(ctx context.Context, clientID string, opts OA
 
 	req := c.R(ctx).SetResult(&OAuthClient{}).SetBody(string(body))
 	e := fmt.Sprintf("account/oauth-clients/%s", clientID)
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}
@@ -165,6 +165,6 @@ func (c *Client) UpdateOAuthClient(ctx context.Context, clientID string, opts OA
 // DeleteOAuthClient deletes the OAuthClient with the specified id
 func (c *Client) DeleteOAuthClient(ctx context.Context, clientID string) error {
 	e := fmt.Sprintf("account/oauth-clients/%s", clientID)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }

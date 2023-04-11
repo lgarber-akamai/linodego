@@ -2,6 +2,7 @@ package metadata
 
 import (
 	"context"
+	"github.com/linode/linodego"
 )
 
 type InstanceBackupsData struct {
@@ -25,7 +26,7 @@ type InstanceData struct {
 func (c *Client) GetInstance(ctx context.Context) (*InstanceData, error) {
 	req := c.R(ctx).SetResult(&InstanceData{})
 
-	resp, err := req.Get("instance")
+	resp, err := linodego.CoupleAPIErrors(req.Get("instance"))
 	if err != nil {
 		return nil, err
 	}

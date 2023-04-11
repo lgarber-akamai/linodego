@@ -74,7 +74,7 @@ func (SSHKeysPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *SSHKeysPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(SSHKeysPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(SSHKeysPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -97,7 +97,7 @@ func (c *Client) ListSSHKeys(ctx context.Context, opts *ListOptions) ([]SSHKey, 
 func (c *Client) GetSSHKey(ctx context.Context, keyID int) (*SSHKey, error) {
 	e := fmt.Sprintf("profile/sshkeys/%d", keyID)
 	req := c.R(ctx).SetResult(&SSHKey{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -113,7 +113,7 @@ func (c *Client) CreateSSHKey(ctx context.Context, opts SSHKeyCreateOptions) (*S
 
 	e := "profile/sshkeys"
 	req := c.R(ctx).SetResult(&SSHKey{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -129,7 +129,7 @@ func (c *Client) UpdateSSHKey(ctx context.Context, keyID int, opts SSHKeyUpdateO
 
 	e := fmt.Sprintf("profile/sshkeys/%d", keyID)
 	req := c.R(ctx).SetResult(&SSHKey{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}
@@ -139,6 +139,6 @@ func (c *Client) UpdateSSHKey(ctx context.Context, keyID int, opts SSHKeyUpdateO
 // DeleteSSHKey deletes the SSHKey with the specified id
 func (c *Client) DeleteSSHKey(ctx context.Context, keyID int) error {
 	e := fmt.Sprintf("profile/sshkeys/%d", keyID)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }

@@ -53,7 +53,7 @@ func (TicketsPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *TicketsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(TicketsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(TicketsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -79,7 +79,7 @@ func (c *Client) ListTickets(ctx context.Context, opts *ListOptions) ([]Ticket, 
 func (c *Client) GetTicket(ctx context.Context, ticketID int) (*Ticket, error) {
 	e := fmt.Sprintf("support/tickets/%d", ticketID)
 	req := c.R(ctx).SetResult(&Ticket{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}

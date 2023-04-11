@@ -96,7 +96,7 @@ func (DomainRecordsPagedResponse) endpoint(ids ...any) string {
 }
 
 func (resp *DomainRecordsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(DomainRecordsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(DomainRecordsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -119,7 +119,7 @@ func (c *Client) ListDomainRecords(ctx context.Context, domainID int, opts *List
 func (c *Client) GetDomainRecord(ctx context.Context, domainID int, recordID int) (*DomainRecord, error) {
 	req := c.R(ctx).SetResult(&DomainRecord{})
 	e := fmt.Sprintf("domains/%d/records/%d", domainID, recordID)
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -135,7 +135,7 @@ func (c *Client) CreateDomainRecord(ctx context.Context, domainID int, opts Doma
 
 	e := fmt.Sprintf("domains/%d/records", domainID)
 	req := c.R(ctx).SetResult(&DomainRecord{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -152,7 +152,7 @@ func (c *Client) UpdateDomainRecord(ctx context.Context, domainID int, recordID 
 
 	e := fmt.Sprintf("domains/%d/records/%d", domainID, recordID)
 	req := c.R(ctx).SetResult(&DomainRecord{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}
@@ -163,6 +163,6 @@ func (c *Client) UpdateDomainRecord(ctx context.Context, domainID int, recordID 
 // DeleteDomainRecord deletes the DomainRecord with the specified id
 func (c *Client) DeleteDomainRecord(ctx context.Context, domainID int, recordID int) error {
 	e := fmt.Sprintf("domains/%d/records/%d", domainID, recordID)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }

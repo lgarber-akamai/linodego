@@ -111,7 +111,7 @@ func (ImagesPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *ImagesPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(ImagesPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(ImagesPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -134,7 +134,7 @@ func (c *Client) ListImages(ctx context.Context, opts *ListOptions) ([]Image, er
 func (c *Client) GetImage(ctx context.Context, imageID string) (*Image, error) {
 	e := fmt.Sprintf("images/%s", imageID)
 	req := c.R(ctx).SetResult(&Image{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -150,7 +150,7 @@ func (c *Client) CreateImage(ctx context.Context, opts ImageCreateOptions) (*Ima
 
 	e := "images"
 	req := c.R(ctx).SetResult(&Image{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -166,7 +166,7 @@ func (c *Client) UpdateImage(ctx context.Context, imageID string, opts ImageUpda
 
 	e := fmt.Sprintf("images/%s", imageID)
 	req := c.R(ctx).SetResult(&Image{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}
@@ -176,7 +176,7 @@ func (c *Client) UpdateImage(ctx context.Context, imageID string, opts ImageUpda
 // DeleteImage deletes the Image with the specified id
 func (c *Client) DeleteImage(ctx context.Context, imageID string) error {
 	e := fmt.Sprintf("images/%s", imageID)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }
 
@@ -189,7 +189,7 @@ func (c *Client) CreateImageUpload(ctx context.Context, opts ImageCreateUploadOp
 
 	e := "images/upload"
 	req := c.R(ctx).SetResult(&ImageCreateUploadResponse{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, "", err
 	}
@@ -211,7 +211,7 @@ func (c *Client) UploadImageToURL(ctx context.Context, uploadURL string, image i
 		SetHeader("Content-Type", "application/octet-stream").
 		SetBody(image)
 
-	_, err := coupleAPIErrors(req.
+	_, err := CoupleAPIErrors(req.
 		Put(uploadURL))
 
 	return err

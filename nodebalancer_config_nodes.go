@@ -87,7 +87,7 @@ func (NodeBalancerNodesPagedResponse) endpoint(ids ...any) string {
 }
 
 func (resp *NodeBalancerNodesPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(NodeBalancerNodesPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(NodeBalancerNodesPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -110,7 +110,7 @@ func (c *Client) ListNodeBalancerNodes(ctx context.Context, nodebalancerID int, 
 func (c *Client) GetNodeBalancerNode(ctx context.Context, nodebalancerID int, configID int, nodeID int) (*NodeBalancerNode, error) {
 	e := fmt.Sprintf("nodebalancers/%d/configs/%d/nodes/%d", nodebalancerID, configID, nodeID)
 	req := c.R(ctx).SetResult(&NodeBalancerNode{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -126,7 +126,7 @@ func (c *Client) CreateNodeBalancerNode(ctx context.Context, nodebalancerID int,
 
 	e := fmt.Sprintf("nodebalancers/%d/configs/%d/nodes", nodebalancerID, configID)
 	req := c.R(ctx).SetResult(&NodeBalancerNode{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -142,7 +142,7 @@ func (c *Client) UpdateNodeBalancerNode(ctx context.Context, nodebalancerID int,
 
 	e := fmt.Sprintf("nodebalancers/%d/configs/%d/nodes/%d", nodebalancerID, configID, nodeID)
 	req := c.R(ctx).SetResult(&NodeBalancerNode{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}
@@ -152,6 +152,6 @@ func (c *Client) UpdateNodeBalancerNode(ctx context.Context, nodebalancerID int,
 // DeleteNodeBalancerNode deletes the NodeBalancerNode with the specified id
 func (c *Client) DeleteNodeBalancerNode(ctx context.Context, nodebalancerID int, configID int, nodeID int) error {
 	e := fmt.Sprintf("nodebalancers/%d/configs/%d/nodes/%d", nodebalancerID, configID, nodeID)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }

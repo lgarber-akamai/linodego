@@ -51,7 +51,7 @@ func (IPAddressesPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *IPAddressesPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(IPAddressesPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(IPAddressesPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -74,7 +74,7 @@ func (c *Client) ListIPAddresses(ctx context.Context, opts *ListOptions) ([]Inst
 func (c *Client) GetIPAddress(ctx context.Context, id string) (*InstanceIP, error) {
 	e := fmt.Sprintf("networking/ips/%s", id)
 	req := c.R(ctx).SetResult(&InstanceIP{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -90,7 +90,7 @@ func (c *Client) UpdateIPAddress(ctx context.Context, id string, opts IPAddressU
 
 	e := fmt.Sprintf("networking/ips/%s", id)
 	req := c.R(ctx).SetResult(&InstanceIP{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}
@@ -107,7 +107,7 @@ func (c *Client) InstancesAssignIPs(ctx context.Context, opts LinodesAssignIPsOp
 
 	e := "networking/ips/assign"
 	req := c.R(ctx).SetBody(string(body))
-	_, err = coupleAPIErrors(req.Post(e))
+	_, err = CoupleAPIErrors(req.Post(e))
 	return err
 }
 
@@ -121,6 +121,6 @@ func (c *Client) ShareIPAddresses(ctx context.Context, opts IPAddressesShareOpti
 
 	e := "networking/ips/share"
 	req := c.R(ctx).SetBody(string(body))
-	_, err = coupleAPIErrors(req.Post(e))
+	_, err = CoupleAPIErrors(req.Post(e))
 	return err
 }

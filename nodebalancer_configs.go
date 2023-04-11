@@ -218,7 +218,7 @@ func (NodeBalancerConfigsPagedResponse) endpoint(ids ...any) string {
 }
 
 func (resp *NodeBalancerConfigsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(NodeBalancerConfigsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(NodeBalancerConfigsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -241,7 +241,7 @@ func (c *Client) ListNodeBalancerConfigs(ctx context.Context, nodebalancerID int
 func (c *Client) GetNodeBalancerConfig(ctx context.Context, nodebalancerID int, configID int) (*NodeBalancerConfig, error) {
 	e := fmt.Sprintf("nodebalancers/%d/configs/%d", nodebalancerID, configID)
 	req := c.R(ctx).SetResult(&NodeBalancerConfig{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -257,7 +257,7 @@ func (c *Client) CreateNodeBalancerConfig(ctx context.Context, nodebalancerID in
 
 	e := fmt.Sprintf("nodebalancers/%d/configs", nodebalancerID)
 	req := c.R(ctx).SetResult(&NodeBalancerConfig{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -273,7 +273,7 @@ func (c *Client) UpdateNodeBalancerConfig(ctx context.Context, nodebalancerID in
 
 	e := fmt.Sprintf("nodebalancers/%d/configs/%d", nodebalancerID, configID)
 	req := c.R(ctx).SetResult(&NodeBalancerConfig{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}
@@ -283,7 +283,7 @@ func (c *Client) UpdateNodeBalancerConfig(ctx context.Context, nodebalancerID in
 // DeleteNodeBalancerConfig deletes the NodeBalancerConfig with the specified id
 func (c *Client) DeleteNodeBalancerConfig(ctx context.Context, nodebalancerID int, configID int) error {
 	e := fmt.Sprintf("nodebalancers/%d/configs/%d", nodebalancerID, configID)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }
 
@@ -296,7 +296,7 @@ func (c *Client) RebuildNodeBalancerConfig(ctx context.Context, nodeBalancerID i
 
 	e := fmt.Sprintf("nodebalancers/%d/configs/%d/rebuild", nodeBalancerID, configID)
 	req := c.R(ctx).SetResult(&NodeBalancerConfig{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}

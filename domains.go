@@ -200,7 +200,7 @@ func (DomainsPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *DomainsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(DomainsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(DomainsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -224,7 +224,7 @@ func (c *Client) ListDomains(ctx context.Context, opts *ListOptions) ([]Domain, 
 func (c *Client) GetDomain(ctx context.Context, domainID int) (*Domain, error) {
 	req := c.R(ctx).SetResult(&Domain{})
 	e := fmt.Sprintf("domains/%d", domainID)
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -241,7 +241,7 @@ func (c *Client) CreateDomain(ctx context.Context, opts DomainCreateOptions) (*D
 
 	req := c.R(ctx).SetResult(&Domain{}).SetBody(string(body))
 	e := "domains"
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -258,7 +258,7 @@ func (c *Client) UpdateDomain(ctx context.Context, domainID int, opts DomainUpda
 
 	e := fmt.Sprintf("domains/%d", domainID)
 	req := c.R(ctx).SetResult(&Domain{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}
@@ -269,7 +269,7 @@ func (c *Client) UpdateDomain(ctx context.Context, domainID int, opts DomainUpda
 // DeleteDomain deletes the Domain with the specified id
 func (c *Client) DeleteDomain(ctx context.Context, domainID int) error {
 	e := fmt.Sprintf("domains/%d", domainID)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }
 
@@ -277,7 +277,7 @@ func (c *Client) DeleteDomain(ctx context.Context, domainID int) error {
 func (c *Client) GetDomainZoneFile(ctx context.Context, domainID int) (*DomainZoneFile, error) {
 	e := fmt.Sprintf("domains/%d/zone-file", domainID)
 	req := c.R(ctx).SetResult(&DomainZoneFile{})
-	resp, err := coupleAPIErrors(req.Get(e))
+	resp, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}

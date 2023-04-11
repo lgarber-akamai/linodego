@@ -69,7 +69,7 @@ func (NotificationsPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *NotificationsPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(NotificationsPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(NotificationsPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}

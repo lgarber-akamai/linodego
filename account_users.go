@@ -59,7 +59,7 @@ func (UsersPagedResponse) endpoint(_ ...any) string {
 }
 
 func (resp *UsersPagedResponse) castResult(r *resty.Request, e string) (int, int, error) {
-	res, err := coupleAPIErrors(r.SetResult(UsersPagedResponse{}).Get(e))
+	res, err := CoupleAPIErrors(r.SetResult(UsersPagedResponse{}).Get(e))
 	if err != nil {
 		return 0, 0, err
 	}
@@ -83,7 +83,7 @@ func (c *Client) ListUsers(ctx context.Context, opts *ListOptions) ([]User, erro
 func (c *Client) GetUser(ctx context.Context, userID string) (*User, error) {
 	e := fmt.Sprintf("account/users/%s", userID)
 	req := c.R(ctx).SetResult(&User{})
-	r, err := coupleAPIErrors(req.Get(e))
+	r, err := CoupleAPIErrors(req.Get(e))
 	if err != nil {
 		return nil, err
 	}
@@ -101,7 +101,7 @@ func (c *Client) CreateUser(ctx context.Context, opts UserCreateOptions) (*User,
 
 	e := "account/users"
 	req := c.R(ctx).SetResult(&User{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Post(e))
+	r, err := CoupleAPIErrors(req.Post(e))
 	if err != nil {
 		return nil, err
 	}
@@ -118,7 +118,7 @@ func (c *Client) UpdateUser(ctx context.Context, userID string, opts UserUpdateO
 
 	e := fmt.Sprintf("account/users/%s", userID)
 	req := c.R(ctx).SetResult(&User{}).SetBody(string(body))
-	r, err := coupleAPIErrors(req.Put(e))
+	r, err := CoupleAPIErrors(req.Put(e))
 	if err != nil {
 		return nil, err
 	}
@@ -129,6 +129,6 @@ func (c *Client) UpdateUser(ctx context.Context, userID string, opts UserUpdateO
 // DeleteUser deletes the User with the specified id
 func (c *Client) DeleteUser(ctx context.Context, userID string) error {
 	e := fmt.Sprintf("account/users/%s", userID)
-	_, err := coupleAPIErrors(c.R(ctx).Delete(e))
+	_, err := CoupleAPIErrors(c.R(ctx).Delete(e))
 	return err
 }
