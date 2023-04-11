@@ -1,17 +1,19 @@
 package metadata
 
-import "context"
+import (
+	"context"
+)
 
 type IPv4Data struct {
-	Public  []string `json:"public"`
-	Private []string `json:"private"`
-	Elastic []string `json:"elastic"`
+	Public  []IPNet `json:"public"`
+	Private []IPNet `json:"private"`
+	Elastic []IPNet `json:"elastic"`
 }
 
 type IPv6Data struct {
-	Ranges        []string `json:"ranges"`
-	LinkLocal     string   `json:"link-local"`
-	ElasticRanges []string `json:"elastic-ranges"`
+	Ranges        []IPNet `json:"ranges"`
+	LinkLocal     IPNet   `json:"link-local"`
+	ElasticRanges []IPNet `json:"elastic-ranges"`
 }
 
 type NetworkData struct {

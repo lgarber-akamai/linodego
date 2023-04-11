@@ -96,7 +96,7 @@ func (c *Client) UseToken(token string) *Client {
 func (c *Client) RefreshToken(ctx context.Context) (*Client, error) {
 	token, err := c.GenerateToken(ctx, GenerateTokenOptions{})
 	if err != nil {
-		return nil, fmt.Errorf("failed to generate metadata token: %s", err)
+		return nil, fmt.Errorf("failed to generate metadata token: %w", err)
 	}
 
 	c.UseToken(token.Token)
@@ -140,7 +140,7 @@ func (c *Client) updateHostURL() {
 		apiProto = c.apiProtocol
 	}
 
-	c.resty.SetHostURL(fmt.Sprintf("%s://%s/%s", apiProto, baseURL, apiVersion))
+	c.resty.SetBaseURL(fmt.Sprintf("%s://%s/%s", apiProto, baseURL, apiVersion))
 }
 
 // R wraps resty's R method
