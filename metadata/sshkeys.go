@@ -3,8 +3,7 @@ package metadata
 import "context"
 
 type SSHKeysUserData struct {
-	Root     []string `json:"root"`
-	Username []string `json:"username"`
+	Root []string `json:"root"`
 }
 
 type SSHKeysData struct {

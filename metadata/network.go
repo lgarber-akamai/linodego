@@ -5,22 +5,29 @@ import (
 	"net/netip"
 )
 
+type VLANData struct {
+	Label       string       `json:"label"`
+	Purpose     string       `json:"purpose"`
+	IPAMAddress netip.Prefix `json:"ipam_address"`
+}
+
 type IPv4Data struct {
 	Public  []netip.Prefix `json:"public"`
 	Private []netip.Prefix `json:"private"`
-	Elastic []netip.Prefix `json:"elastic"`
+	Shared  []netip.Prefix `json:"shared"`
 }
 
 type IPv6Data struct {
-	Ranges        []netip.Prefix `json:"ranges"`
-	LinkLocal     netip.Prefix   `json:"link-local"`
-	ElasticRanges []netip.Prefix `json:"elastic-ranges"`
+	SLAAC        netip.Prefix   `json:"slaac"`
+	LinkLocal    netip.Prefix   `json:"link-local"`
+	Ranges       []netip.Prefix `json:"ranges"`
+	SharedRanges []netip.Prefix `json:"shared-ranges"`
 }
 
 type NetworkData struct {
-	VLANID int      `json:"vlan-id"`
-	IPv4   IPv4Data `json:"ipv4"`
-	IPv6   IPv6Data `json:"ipv6"`
+	VLANs []VLANData `json:"vlans"`
+	IPv4  IPv4Data   `json:"ipv4"`
+	IPv6  IPv6Data   `json:"ipv6"`
 }
 
 func (c *Client) GetNetwork(ctx context.Context) (*NetworkData, error) {
