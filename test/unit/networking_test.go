@@ -2,6 +2,7 @@ package unit
 
 import (
 	"context"
+	"fmt"
 	"math"
 	"net/http"
 	"reflect"
@@ -36,7 +37,7 @@ func TestIPv6Range_ListMany(t *testing.T) {
 		ranges := make([]linodego.IPv6Range, pageResults)
 		for i := range ranges {
 			ranges[i] = linodego.IPv6Range{
-				Range:  "1234::5678",
+				Range:  fmt.Sprintf("%d::5678", (page-1)*pageSize+i),
 				Region: "us-mia",
 				Prefix: 64,
 			}
@@ -75,4 +76,8 @@ func TestIPv6Range_ListMany(t *testing.T) {
 
 	require.True(t, reflect.DeepEqual(pagesRequested, expectedPages), cmp.Diff(pagesRequested, expectedPages))
 	require.Equal(t, totalResults, len(results))
+
+	for i, r := range results {
+		require.Equal(t, fmt.Sprintf("%d::5678", i), r.Range)
+	}
 }
