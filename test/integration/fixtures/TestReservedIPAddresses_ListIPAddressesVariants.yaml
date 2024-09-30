@@ -14,8 +14,8 @@ interactions:
     url: https://api.linode.com/v4beta/networking/reserved/ips
     method: POST
   response:
-    body: '{"address": "66.175.209.108", "gateway": "66.175.209.1", "subnet_mask":
-      "255.255.255.0", "prefix": 24, "type": "ipv4", "public": true, "rdns": "66-175-209-108.ip.linodeusercontent.com",
+    body: '{"address": "172.104.17.6", "gateway": "172.104.17.1", "subnet_mask": "255.255.255.0",
+      "prefix": 24, "type": "ipv4", "public": true, "rdns": "172-104-17-6.ip.linodeusercontent.com",
       "linode_id": null, "region": "us-east", "vpc_nat_1_1": null, "reserved": true}'
     headers:
       Access-Control-Allow-Credentials:
@@ -35,13 +35,13 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - "264"
+      - "260"
       Content-Security-Policy:
       - default-src 'none'
       Content-Type:
       - application/json
       Expires:
-      - Thu, 05 Sep 2024 17:52:49 GMT
+      - Wed, 25 Sep 2024 15:27:52 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -58,7 +58,7 @@ interactions:
       X-Oauth-Scopes:
       - '*'
       X-Ratelimit-Limit:
-      - "400"
+      - "800"
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
@@ -77,8 +77,8 @@ interactions:
     url: https://api.linode.com/v4beta/networking/reserved/ips
     method: POST
   response:
-    body: '{"address": "66.175.209.141", "gateway": "66.175.209.1", "subnet_mask":
-      "255.255.255.0", "prefix": 24, "type": "ipv4", "public": true, "rdns": "66-175-209-141.ip.linodeusercontent.com",
+    body: '{"address": "172.104.17.165", "gateway": "172.104.17.1", "subnet_mask":
+      "255.255.255.0", "prefix": 24, "type": "ipv4", "public": true, "rdns": "172-104-17-165.ip.linodeusercontent.com",
       "linode_id": null, "region": "us-east", "vpc_nat_1_1": null, "reserved": true}'
     headers:
       Access-Control-Allow-Credentials:
@@ -104,7 +104,7 @@ interactions:
       Content-Type:
       - application/json
       Expires:
-      - Thu, 05 Sep 2024 17:52:49 GMT
+      - Wed, 25 Sep 2024 15:27:52 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -121,7 +121,7 @@ interactions:
       X-Oauth-Scopes:
       - '*'
       X-Ratelimit-Limit:
-      - "400"
+      - "800"
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
@@ -142,12 +142,12 @@ interactions:
     url: https://api.linode.com/v4beta/networking/ips?page=1
     method: GET
   response:
-    body: '{"page": 1, "pages": 1, "results": 2, "data": [{"address": "66.175.209.108",
-      "gateway": "66.175.209.1", "subnet_mask": "255.255.255.0", "prefix": 24, "type":
-      "ipv4", "public": true, "rdns": "66-175-209-108.ip.linodeusercontent.com", "linode_id":
+    body: '{"page": 1, "pages": 1, "results": 2, "data": [{"address": "172.104.17.6",
+      "gateway": "172.104.17.1", "subnet_mask": "255.255.255.0", "prefix": 24, "type":
+      "ipv4", "public": true, "rdns": "172-104-17-6.ip.linodeusercontent.com", "linode_id":
       null, "region": "us-east", "vpc_nat_1_1": null, "reserved": true}, {"address":
-      "66.175.209.141", "gateway": "66.175.209.1", "subnet_mask": "255.255.255.0",
-      "prefix": 24, "type": "ipv4", "public": true, "rdns": "66-175-209-141.ip.linodeusercontent.com",
+      "172.104.17.165", "gateway": "172.104.17.1", "subnet_mask": "255.255.255.0",
+      "prefix": 24, "type": "ipv4", "public": true, "rdns": "172-104-17-165.ip.linodeusercontent.com",
       "linode_id": null, "region": "us-east", "vpc_nat_1_1": null, "reserved": true}]}'
     headers:
       Access-Control-Allow-Credentials:
@@ -167,13 +167,13 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - "579"
+      - "575"
       Content-Security-Policy:
       - default-src 'none'
       Content-Type:
       - application/json
       Expires:
-      - Thu, 05 Sep 2024 17:52:49 GMT
+      - Wed, 25 Sep 2024 15:27:52 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -191,7 +191,7 @@ interactions:
       X-Oauth-Scopes:
       - '*'
       X-Ratelimit-Limit:
-      - "400"
+      - "800"
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
@@ -207,7 +207,99 @@ interactions:
       - application/json
       User-Agent:
       - linodego/dev https://github.com/linode/linodego
-    url: https://api.linode.com/v4beta/networking/reserved/ips/66.175.209.108
+    url: https://api.linode.com/v4beta/networking/reserved/ips/172.104.17.6
+    method: DELETE
+  response:
+    body: '{"errors": [{"reason": "Too many requests"}]}'
+    headers:
+      Access-Control-Allow-Headers:
+      - Authorization, Origin, X-Requested-With, Content-Type, Accept, X-Filter
+      Access-Control-Allow-Methods:
+      - HEAD, GET, OPTIONS, POST, PUT, DELETE
+      Access-Control-Allow-Origin:
+      - '*'
+      Akamai-Internal-Account:
+      - '*'
+      Cache-Control:
+      - max-age=0, no-cache, no-store
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "45"
+      Content-Type:
+      - application/json
+      Expires:
+      - Wed, 25 Sep 2024 15:27:52 GMT
+      Pragma:
+      - no-cache
+      X-Accepted-Oauth-Scopes:
+      - ips:read_write
+      X-Frame-Options:
+      - DENY
+      X-Oauth-Scopes:
+      - '*'
+      X-Ratelimit-Limit:
+      - "5"
+    status: 429 Too Many Requests
+    code: 429
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - linodego/dev https://github.com/linode/linodego
+    url: https://api.linode.com/v4beta/networking/reserved/ips/172.104.17.6
+    method: DELETE
+  response:
+    body: '{"errors": [{"reason": "Too many requests"}]}'
+    headers:
+      Access-Control-Allow-Headers:
+      - Authorization, Origin, X-Requested-With, Content-Type, Accept, X-Filter
+      Access-Control-Allow-Methods:
+      - HEAD, GET, OPTIONS, POST, PUT, DELETE
+      Access-Control-Allow-Origin:
+      - '*'
+      Akamai-Internal-Account:
+      - '*'
+      Cache-Control:
+      - max-age=0, no-cache, no-store
+      Connection:
+      - keep-alive
+      Content-Length:
+      - "45"
+      Content-Type:
+      - application/json
+      Expires:
+      - Wed, 25 Sep 2024 15:27:56 GMT
+      Pragma:
+      - no-cache
+      X-Accepted-Oauth-Scopes:
+      - ips:read_write
+      X-Frame-Options:
+      - DENY
+      X-Oauth-Scopes:
+      - '*'
+      X-Ratelimit-Limit:
+      - "5"
+    status: 429 Too Many Requests
+    code: 429
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - linodego/dev https://github.com/linode/linodego
+    url: https://api.linode.com/v4beta/networking/reserved/ips/172.104.17.6
     method: DELETE
   response:
     body: '{}'
@@ -235,7 +327,7 @@ interactions:
       Content-Type:
       - application/json
       Expires:
-      - Thu, 05 Sep 2024 17:52:50 GMT
+      - Wed, 25 Sep 2024 15:28:01 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -268,7 +360,7 @@ interactions:
       - application/json
       User-Agent:
       - linodego/dev https://github.com/linode/linodego
-    url: https://api.linode.com/v4beta/networking/reserved/ips/66.175.209.141
+    url: https://api.linode.com/v4beta/networking/reserved/ips/172.104.17.165
     method: DELETE
   response:
     body: '{}'
@@ -296,7 +388,7 @@ interactions:
       Content-Type:
       - application/json
       Expires:
-      - Thu, 05 Sep 2024 17:52:50 GMT
+      - Wed, 25 Sep 2024 15:28:01 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:

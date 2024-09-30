@@ -14,8 +14,8 @@ interactions:
     url: https://api.linode.com/v4beta/networking/reserved/ips
     method: POST
   response:
-    body: '{"address": "172.104.28.100", "gateway": "172.104.28.1", "subnet_mask":
-      "255.255.255.0", "prefix": 24, "type": "ipv4", "public": true, "rdns": "172-104-28-100.ip.linodeusercontent.com",
+    body: '{"address": "172.104.17.197", "gateway": "172.104.17.1", "subnet_mask":
+      "255.255.255.0", "prefix": 24, "type": "ipv4", "public": true, "rdns": "172-104-17-197.ip.linodeusercontent.com",
       "linode_id": null, "region": "us-east", "vpc_nat_1_1": null, "reserved": true}'
     headers:
       Access-Control-Allow-Credentials:
@@ -41,7 +41,7 @@ interactions:
       Content-Type:
       - application/json
       Expires:
-      - Thu, 12 Sep 2024 16:44:18 GMT
+      - Wed, 25 Sep 2024 15:27:30 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -65,7 +65,7 @@ interactions:
     code: 200
     duration: ""
 - request:
-    body: '{"region":"us-east","type":"g6-nanode-1","label":"go-test-ins-reserved-ip-5joh9oqb2908","root_pass":"?Mw;l]:[\u00262x^pK4819J9y[=623gC0qlLFj9?\u003e2ia6RSM!HHpc1Z;NG3r3Kz.=Mb]","image":"linode/alpine3.17","interfaces":[{"purpose":"public"}],"booted":false,"ipv4":["172.104.28.100"]}'
+    body: '{"region":"us-east","type":"g6-nanode-1","label":"go-test-ins-reserved-ip-475zj3ey9d6f","root_pass":"aD+d7x\u003eFzW;1R.!0NOh/$wA3\u003e^25N16o=z=uRjJ5XqT-XWav9~1$$2Xv~7ti2U68","image":"linode/alpine3.17","interfaces":[{"purpose":"public"}],"booted":false,"ipv4":["172.104.17.197"]}'
     form: {}
     headers:
       Accept:
@@ -77,15 +77,15 @@ interactions:
     url: https://api.linode.com/v4beta/linode/instances
     method: POST
   response:
-    body: '{"id": 63830251, "label": "go-test-ins-reserved-ip-5joh9oqb2908", "group":
+    body: '{"id": 64414051, "label": "go-test-ins-reserved-ip-475zj3ey9d6f", "group":
       "", "status": "provisioning", "created": "2018-01-02T03:04:05", "updated": "2018-01-02T03:04:05",
-      "type": "g6-nanode-1", "ipv4": ["172.104.28.100"], "ipv6": "2600:3c03::f03c:95ff:fea5:b601/128",
+      "type": "g6-nanode-1", "ipv4": ["172.104.17.197"], "ipv6": "1234::5678/128",
       "image": "linode/alpine3.17", "region": "us-east", "site_type": "core", "specs":
       {"disk": 25600, "memory": 1024, "vcpus": 1, "gpus": 0, "transfer": 1000}, "alerts":
       {"cpu": 90, "network_in": 10, "network_out": 10, "transfer_quota": 80, "io":
-      10000}, "backups": {"enabled": false, "available": false, "schedule": {"day":
+      10000}, "backups": {"enabled": true, "available": false, "schedule": {"day":
       null, "window": null}, "last_successful": null}, "hypervisor": "kvm", "watchdog_enabled":
-      true, "tags": [], "host_uuid": "e2b2194e60c6054585feb7014b294d65664c16a9", "has_user_data":
+      true, "tags": [], "host_uuid": "e45fac5bf69dfc0a587fc49f41a65b0a0a0c6e93", "has_user_data":
       false, "placement_group": null, "disk_encryption": "disabled", "lke_cluster_id":
       null, "capabilities": []}'
     headers:
@@ -110,7 +110,7 @@ interactions:
       Content-Type:
       - application/json
       Expires:
-      - Thu, 12 Sep 2024 16:44:19 GMT
+      - Wed, 25 Sep 2024 15:27:32 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -135,7 +135,7 @@ interactions:
     code: 200
     duration: ""
 - request:
-    body: '{"region":"us-east","type":"g6-nanode-1","label":"go-test-ins-reserved-ip-lm38753c0ooi","root_pass":"B8c03IyO8!+xfZt439xEpv#5n3H9HoJ^P\\^\u003c`2|XqgLZ9TDtXGq=04f\u003e4''$|.l}4","image":"linode/alpine3.17","interfaces":[{"purpose":"public"}],"booted":false,"ipv4":["172.104.28.100"]}'
+    body: '{"region":"us-east","type":"g6-nanode-1","label":"go-test-ins-reserved-ip-m387tc2o5q2g","root_pass":"*\u0026^r8lUF@7p=O9[4?Ia5D977xB4~jl/MMVJ2GilJ1Oi9g?|1s7dd?C8~\u0026p7p`V[O","image":"linode/alpine3.17","interfaces":[{"purpose":"public"}],"booted":false,"ipv4":["172.104.17.197"]}'
     form: {}
     headers:
       Accept:
@@ -165,7 +165,7 @@ interactions:
       Content-Type:
       - application/json
       Expires:
-      - Thu, 12 Sep 2024 16:44:19 GMT
+      - Wed, 25 Sep 2024 15:27:32 GMT
       Pragma:
       - no-cache
       X-Accepted-Oauth-Scopes:
@@ -189,7 +189,7 @@ interactions:
       - application/json
       User-Agent:
       - linodego/dev https://github.com/linode/linodego
-    url: https://api.linode.com/v4beta/linode/instances/63830251
+    url: https://api.linode.com/v4beta/linode/instances/64414051
     method: DELETE
   response:
     body: '{}'
@@ -217,7 +217,7 @@ interactions:
       Content-Type:
       - application/json
       Expires:
-      - Thu, 12 Sep 2024 16:44:21 GMT
+      - Wed, 25 Sep 2024 15:27:35 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -250,7 +250,7 @@ interactions:
       - application/json
       User-Agent:
       - linodego/dev https://github.com/linode/linodego
-    url: https://api.linode.com/v4beta/networking/reserved/ips/172.104.28.100
+    url: https://api.linode.com/v4beta/networking/reserved/ips/172.104.17.197
     method: DELETE
   response:
     body: '{}'
@@ -278,7 +278,7 @@ interactions:
       Content-Type:
       - application/json
       Expires:
-      - Thu, 12 Sep 2024 16:44:22 GMT
+      - Wed, 25 Sep 2024 15:27:35 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:

@@ -2,7 +2,51 @@
 version: 1
 interactions:
 - request:
-    body: '{"region":"us-east","type":"g6-nanode-1","label":"go-test-ins-reserved-ip-x34lc083oko4","root_pass":"}VsdSi,{!omez2A1BMU7J7p`41z1ER6-rs=hD,151f2\u003e/81q\\SJNg].Rz7Q=`Z\u00262","image":"linode/alpine3.17","interfaces":[{"purpose":"public"}],"booted":false,"ipv4":["198.51.100.1"]}'
+    body: '{"region":"us-east","type":"g6-nanode-1","label":"go-test-ins-reserved-ip-erx49v4u29w8","root_pass":"p3\u0026c~02s6~bVOw?F5/jQIeYd#+C6d,]`I|WAFZ55(r2O[1fqB16609A`T\u0026q{ccx7","image":"linode/alpine3.17","interfaces":[{"purpose":"public"}],"booted":false,"ipv4":["198.51.100.1"]}'
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+      User-Agent:
+      - linodego/dev https://github.com/linode/linodego
+    url: https://api.linode.com/v4beta/linode/instances
+    method: POST
+  response:
+    body: '{"errors": [{"reason": "Too many requests"}]}'
+    headers:
+      Access-Control-Allow-Headers:
+      - Authorization, Origin, X-Requested-With, Content-Type, Accept, X-Filter
+      Access-Control-Allow-Methods:
+      - HEAD, GET, OPTIONS, POST, PUT, DELETE
+      Access-Control-Allow-Origin:
+      - '*'
+      Akamai-Internal-Account:
+      - '*'
+      Cache-Control:
+      - max-age=0, no-cache, no-store
+      Content-Length:
+      - "45"
+      Content-Type:
+      - application/json
+      Expires:
+      - Wed, 25 Sep 2024 15:27:36 GMT
+      Pragma:
+      - no-cache
+      X-Accepted-Oauth-Scopes:
+      - linodes:read_write
+      X-Frame-Options:
+      - DENY
+      X-Oauth-Scopes:
+      - '*'
+      X-Ratelimit-Limit:
+      - "5"
+    status: 429 Too Many Requests
+    code: 429
+    duration: ""
+- request:
+    body: '{"region":"us-east","type":"g6-nanode-1","label":"go-test-ins-reserved-ip-erx49v4u29w8","root_pass":"p3\u0026c~02s6~bVOw?F5/jQIeYd#+C6d,]`I|WAFZ55(r2O[1fqB16609A`T\u0026q{ccx7","image":"linode/alpine3.17","interfaces":[{"purpose":"public"}],"booted":false,"ipv4":["198.51.100.1"]}'
     form: {}
     headers:
       Accept:
@@ -32,7 +76,7 @@ interactions:
       Content-Type:
       - application/json
       Expires:
-      - Thu, 12 Sep 2024 16:44:22 GMT
+      - Wed, 25 Sep 2024 15:27:39 GMT
       Pragma:
       - no-cache
       X-Accepted-Oauth-Scopes:

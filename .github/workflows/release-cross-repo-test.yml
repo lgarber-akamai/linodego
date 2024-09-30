@@ -10,7 +10,8 @@ jobs:
       - name: checkout terraform repo
         uses: actions/checkout@v4
         with:
-          repository: linode/terraform-provider-linode
+          repository: lgarber-akamai/terraform-provider-linode
+          ref: 'ref/changes-for-resty-removal'
           fetch-depth: 0
           submodules: 'recursive'
 

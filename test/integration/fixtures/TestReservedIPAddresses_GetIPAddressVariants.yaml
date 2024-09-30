@@ -14,8 +14,8 @@ interactions:
     url: https://api.linode.com/v4beta/networking/reserved/ips
     method: POST
   response:
-    body: '{"address": "45.56.109.241", "gateway": "45.56.109.1", "subnet_mask": "255.255.255.0",
-      "prefix": 24, "type": "ipv4", "public": true, "rdns": "45-56-109-241.ip.linodeusercontent.com",
+    body: '{"address": "172.104.17.6", "gateway": "172.104.17.1", "subnet_mask": "255.255.255.0",
+      "prefix": 24, "type": "ipv4", "public": true, "rdns": "172-104-17-6.ip.linodeusercontent.com",
       "linode_id": null, "region": "us-east", "vpc_nat_1_1": null, "reserved": true}'
     headers:
       Access-Control-Allow-Credentials:
@@ -35,13 +35,13 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - "261"
+      - "260"
       Content-Security-Policy:
       - default-src 'none'
       Content-Type:
       - application/json
       Expires:
-      - Thu, 29 Aug 2024 15:39:20 GMT
+      - Wed, 25 Sep 2024 15:28:02 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -58,7 +58,7 @@ interactions:
       X-Oauth-Scopes:
       - '*'
       X-Ratelimit-Limit:
-      - "400"
+      - "800"
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
@@ -74,11 +74,11 @@ interactions:
       - application/json
       User-Agent:
       - linodego/dev https://github.com/linode/linodego
-    url: https://api.linode.com/v4beta/networking/reserved/ips/45.56.109.241
+    url: https://api.linode.com/v4beta/networking/reserved/ips/172.104.17.6
     method: GET
   response:
-    body: '{"address": "45.56.109.241", "gateway": "45.56.109.1", "subnet_mask": "255.255.255.0",
-      "prefix": 24, "type": "ipv4", "public": true, "rdns": "45-56-109-241.ip.linodeusercontent.com",
+    body: '{"address": "172.104.17.6", "gateway": "172.104.17.1", "subnet_mask": "255.255.255.0",
+      "prefix": 24, "type": "ipv4", "public": true, "rdns": "172-104-17-6.ip.linodeusercontent.com",
       "linode_id": null, "region": "us-east", "vpc_nat_1_1": null, "reserved": true}'
     headers:
       Access-Control-Allow-Credentials:
@@ -98,13 +98,13 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - "261"
+      - "260"
       Content-Security-Policy:
       - default-src 'none'
       Content-Type:
       - application/json
       Expires:
-      - Thu, 29 Aug 2024 15:39:20 GMT
+      - Wed, 25 Sep 2024 15:28:02 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -160,7 +160,7 @@ interactions:
       Content-Type:
       - application/json
       Expires:
-      - Thu, 29 Aug 2024 15:39:20 GMT
+      - Wed, 25 Sep 2024 15:28:02 GMT
       Pragma:
       - no-cache
       Vary:
@@ -186,7 +186,7 @@ interactions:
       - application/json
       User-Agent:
       - linodego/dev https://github.com/linode/linodego
-    url: https://api.linode.com/v4beta/networking/reserved/ips/45.56.109.241
+    url: https://api.linode.com/v4beta/networking/reserved/ips/172.104.17.6
     method: DELETE
   response:
     body: '{}'
@@ -214,7 +214,7 @@ interactions:
       Content-Type:
       - application/json
       Expires:
-      - Thu, 29 Aug 2024 15:39:21 GMT
+      - Wed, 25 Sep 2024 15:28:02 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:

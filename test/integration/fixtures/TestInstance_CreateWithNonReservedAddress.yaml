@@ -2,7 +2,7 @@
 version: 1
 interactions:
 - request:
-    body: '{"region":"us-east","type":"g6-nanode-1","label":"go-test-ins-reserved-ip-or7801td3le2","root_pass":"NJ361jSqj5#YLI;4I33S\u0026|C\\LlW74Bp!b9=g35b?[O0mU|7jnW''.ci*d)(0[9Pat","image":"linode/alpine3.17","interfaces":[{"purpose":"public"}],"booted":false,"ipv4":["192.0.2.1"]}'
+    body: '{"region":"us-east","type":"g6-nanode-1","label":"go-test-ins-reserved-ip-9835aago21pp","root_pass":"b`4rKC\u0026OeSX|{:Sa54h=Zq1h3M289r36dqD-2BZf)16@0dF^gd/P9SKvw4-[.\\X?","image":"linode/alpine3.17","interfaces":[{"purpose":"public"}],"booted":false,"ipv4":["192.0.2.1"]}'
     form: {}
     headers:
       Accept:
@@ -32,7 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Expires:
-      - Thu, 12 Sep 2024 16:44:22 GMT
+      - Wed, 25 Sep 2024 15:27:36 GMT
       Pragma:
       - no-cache
       X-Accepted-Oauth-Scopes:
