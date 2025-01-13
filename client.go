@@ -296,7 +296,7 @@ func (c *httpClient) logRequest(req *http.Request, method, url string, bodyBuffe
 	headers := req.Header.Clone()
 
 	// Sanitize the header for logging purposes
-	headers.Set("Authorization", "Bearer *******************************")
+	headers.Del("Authorization")
 
 	var logBuf bytes.Buffer
 	err := reqLogTemplate.Execute(&logBuf, map[string]interface{}{
