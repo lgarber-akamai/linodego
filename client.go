@@ -293,16 +293,26 @@ func (c *httpClient) logRequest(req *http.Request, method, url string, bodyBuffe
 		reqBody = "nil"
 	}
 
-	headers := req.Header.Clone()
+	sanitizedHeaders := make(map[string][]string, len(req.Header))
 
-	// Sanitize the header for logging purposes
-	headers.Del("Authorization")
+	for key, values := range req.Header {
+		headerValues := make([]string, len(values))
+
+		for i, value := range values {
+			sanitizedValue := strings.ReplaceAll(value, "\r", "")
+			sanitizedValue = strings.ReplaceAll(sanitizedValue, "\n", "")
+
+			headerValues[i] = sanitizedValue
+		}
+
+		sanitizedHeaders[key] = headerValues
+	}
 
 	var logBuf bytes.Buffer
 	err := reqLogTemplate.Execute(&logBuf, map[string]interface{}{
 		"Method":  method,
 		"URL":     url,
-		"Headers": headers,
+		"Headers": sanitizedHeaders,
 		"Body":    reqBody,
 	})
 	if err == nil {
