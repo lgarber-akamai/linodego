@@ -293,10 +293,16 @@ func (c *httpClient) logRequest(req *http.Request, method, url string, bodyBuffe
 		reqBody = "nil"
 	}
 
-	sanitizedHeaders := make([]string, 0, len(req.Header))
+	sanitizedHeaders := make(map[string][]string, len(req.Header))
 
-	for key := range req.Header {
-		sanitizedHeaders = append(sanitizedHeaders, key)
+	for key, values := range req.Header {
+		headerValues := make([]string, len(values))
+
+		for i, value := range values {
+			headerValues[i] = strings.Repeat("*", len(value))
+		}
+
+		sanitizedHeaders[key] = headerValues
 	}
 
 	var logBuf bytes.Buffer
