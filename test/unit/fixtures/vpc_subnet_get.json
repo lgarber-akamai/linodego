@@ -13,10 +13,12 @@
         "interfaces": [
           {
             "id": 1,
+            "config_id": 4567,
             "active": true
           },
           {
             "id": 2,
+            "config_id": 4567,
             "active": false
           }
         ]
