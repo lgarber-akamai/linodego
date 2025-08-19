@@ -35,6 +35,8 @@ func TestAccountSettings_Get(t *testing.T) {
 		t, linodego.LegacyConfigDefaultButLinodeAllowed, accountSettings.InterfacesForNewLinodes,
 		"Expected 'object_storage' to be 'active'",
 	)
+
+	assert.Equal(t, "linode/migrate", accountSettings.MaintenancePolicy, "Expected 'maintenance_policy' to be 'linode/migrate'")
 }
 
 func TestAccountSettings_Update(t *testing.T) {
@@ -50,6 +52,7 @@ func TestAccountSettings_Update(t *testing.T) {
 		BackupsEnabled:          Bool(true),
 		NetworkHelper:           Bool(true),
 		InterfacesForNewLinodes: &i,
+		MaintenancePolicy:       linodego.Pointer("linode/power_off_on"),
 	}
 	base.MockPut("account/settings", fixtureData)
 
@@ -65,4 +68,5 @@ func TestAccountSettings_Update(t *testing.T) {
 		t, linodego.LegacyConfigDefaultButLinodeAllowed, accountSettings.InterfacesForNewLinodes,
 		"Expected 'object_storage' to be 'active'",
 	)
+	assert.Equal(t, "linode/power_off_on", accountSettings.MaintenancePolicy, "Expected 'maintenance_policy' to be 'linode/power_off_on'")
 }
