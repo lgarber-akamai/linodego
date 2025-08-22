@@ -81,9 +81,11 @@ func TestVPC_Get(t *testing.T) {
 	assert.Equal(t, "fd71:1140:a9d0::/52", vpc.IPv6[0].Range)
 
 	assert.NotEmpty(t, vpc.Subnets)
-	assert.Equal(t, 456, vpc.Subnets[0].ID)
-	assert.Equal(t, "subnet-1", vpc.Subnets[0].Label)
-	assert.Equal(t, "192.168.1.0/24", vpc.Subnets[0].IPv4)
+	assert.Equal(t, 123, vpc.Subnets[0].ID)
+	assert.Equal(t, "Subnet A", vpc.Subnets[0].Label)
+	assert.Equal(t, "10.0.1.0/24", vpc.Subnets[0].IPv4)
+	assert.Equal(t, "A description of my VPC.", vpc.Description)
+
 	assert.Equal(t, 111, vpc.Subnets[0].Linodes[0].ID)
 	assert.Equal(t, true, vpc.Subnets[0].Linodes[0].Interfaces[0].Active)
 	assert.Equal(t, 4567, *vpc.Subnets[0].Linodes[0].Interfaces[0].ConfigID)
@@ -118,13 +120,13 @@ func TestVPC_List(t *testing.T) {
 	assert.Equal(t, "fd71:1140:a9d0::/52", vpc.IPv6[0].Range)
 
 	assert.NotEmpty(t, vpc.Subnets, "Expected VPC to have subnets")
-	assert.Equal(t, 456, vpc.Subnets[0].ID, "Expected subnet ID to match")
-	assert.Equal(t, "subnet-1", vpc.Subnets[0].Label, "Expected subnet label to match")
+	assert.Equal(t, 123, vpc.Subnets[0].ID, "Expected subnet ID to match")
+	assert.Equal(t, "Subnet A", vpc.Subnets[0].Label, "Expected subnet label to match")
 	assert.Equal(t, "192.0.2.210/24", vpc.Subnets[0].IPv4, "Expected subnet IPv4 to match")
 
 	assert.Equal(t, 111, vpc.Subnets[0].Linodes[0].ID)
 	assert.Equal(t, true, vpc.Subnets[0].Linodes[0].Interfaces[0].Active)
-	assert.Nil(t, vpc.Subnets[0].Linodes[0].Interfaces[0].ConfigID)
+	assert.Equal(t, 4567, *vpc.Subnets[0].Linodes[0].Interfaces[0].ConfigID)
 	assert.Equal(t, 421, vpc.Subnets[0].Linodes[0].Interfaces[0].ID)
 }
 

@@ -4,9 +4,36 @@ import (
 	"context"
 	"testing"
 
+	"github.com/stretchr/testify/require"
+
 	"github.com/linode/linodego"
 	"github.com/stretchr/testify/assert"
 )
+
+func TestInterface_Get(t *testing.T) {
+	fixtures := NewTestFixtures()
+
+	fixtureData, err := fixtures.GetFixture("interface_get")
+	if err != nil {
+		t.Fatalf("Failed to load fixture: %v", err)
+	}
+
+	var base ClientBaseCase
+	base.SetUp(t)
+	defer base.TearDown(t)
+
+	base.MockGet("linode/instances/123/interfaces/123", fixtureData)
+
+	iface, err := base.Client.GetInterface(context.Background(), 123, 123)
+	if err != nil {
+		t.Fatalf("Error fetching interfaces: %v", err)
+	}
+
+	assert.Equal(t, 123, iface.ID)
+	assert.Equal(t, 1, iface.Version)
+	assert.Equal(t, false, *iface.DefaultRoute.IPv4)
+	assert.Equal(t, "my_vlan", iface.VLAN.VLANLabel)
+}
 
 func TestInterface_List(t *testing.T) {
 	fixtures := NewTestFixtures()
@@ -130,17 +157,17 @@ func TestInterface_CreatePublic(t *testing.T) {
 	base.MockPost("linode/instances/123/interfaces", fixtureData)
 
 	opts := linodego.LinodeInterfaceCreateOptions{
-		FirewallID: linodego.Pointer(123),
 		Public: &linodego.PublicInterfaceCreateOptions{
 			IPv4: &linodego.PublicInterfaceIPv4CreateOptions{
 				Addresses: []linodego.PublicInterfaceIPv4AddressCreateOptions{
 					{
-						Address: "auto",
+						Address: linodego.Pointer("auto"),
 						Primary: linodego.Pointer(true),
 					},
 				},
 			},
 		},
+		FirewallID: linodego.DoublePointer(123),
 	}
 
 	iface, err := base.Client.CreateInterface(context.Background(), 123, opts)
@@ -156,9 +183,7 @@ func TestInterface_UpdateVLAN(t *testing.T) {
 	fixtures := NewTestFixtures()
 
 	fixtureData, err := fixtures.GetFixture("interface_update_vlan")
-	if err != nil {
-		t.Fatalf("Failed to load fixture: %v", err)
-	}
+	require.NoError(t, err)
 
 	var base ClientBaseCase
 	base.SetUp(t)
@@ -205,7 +230,7 @@ func TestInterface_UpdateVPC(t *testing.T) {
 			IPv4: &linodego.VPCInterfaceIPv4CreateOptions{
 				Addresses: []linodego.VPCInterfaceIPv4AddressCreateOptions{
 					{
-						Address: "192.168.23.4",
+						Address: linodego.Pointer("192.168.23.4"),
 						Primary: linodego.Pointer(true),
 					},
 				},
